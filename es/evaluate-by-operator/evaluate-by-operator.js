@@ -12,9 +12,9 @@ import minus from './operator/minus';
 import multiply from './operator/multiply';
 import notEqual from './operator/not-equal';
 import power from './operator/power';
-import {ERROR_NAME} from './../error';
+import { ERROR_NAME } from './../error';
 
-const availableOperators = Object.create(null);
+var availableOperators = Object.create(null);
 
 /**
  * Evaluate values by operator id.git
@@ -23,18 +23,21 @@ const availableOperators = Object.create(null);
  * @param {Array} [params=[]] Arguments to evaluate.
  * @returns {*}
  */
-export default function evaluateByOperator(operator, params = [], emitter) {
+export default function evaluateByOperator(operator) {
+  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  var emitter = arguments[2];
+
   operator = operator.toUpperCase();
 
   if (!availableOperators[operator]) {
     throw Error(ERROR_NAME);
   }
 
-  let value;
+  var value = void 0;
   try {
-    value = availableOperators[operator](...params);
+    value = availableOperators[operator].apply(availableOperators, params);
     if (emitter) {
-      emitter.emit('callFunction', operator, params, (newValue) => {
+      emitter.emit('callFunction', operator, params, function (newValue) {
         if (newValue !== void 0) {
           value = newValue;
         }
@@ -42,7 +45,7 @@ export default function evaluateByOperator(operator, params = [], emitter) {
     }
   } catch (e) {
     if (emitter) {
-      emitter.emit('functionError', operator, params, (newValue) => {
+      emitter.emit('functionError', operator, params, function (newValue) {
         if (newValue !== void 0) {
           value = newValue;
         }
@@ -67,7 +70,7 @@ export function registerOperation(symbol, func) {
   if (!Array.isArray(symbol)) {
     symbol = [symbol.toUpperCase()];
   }
-  symbol.forEach((s) => {
+  symbol.forEach(function (s) {
     if (func.isFactory) {
       availableOperators[s] = func(s);
     } else {

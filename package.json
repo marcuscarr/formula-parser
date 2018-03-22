@@ -1,6 +1,6 @@
 {
   "name": "hot-formula-parser",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "Formula parser",
   "browser": "dist/formula-parser.js",
   "main": "lib/index.js",
@@ -19,7 +19,8 @@
     "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js dist/formula-parser.js",
     "generate-parser": "cd src/grammar-parser && jison grammar-parser.jison",
     "release": "generate-release",
-    "prepublish": "npm run clean && npm run check && npm run build && check-es3-syntax lib/ dist/ --kill --print"
+    "prepublish": "npm run clean && npm run check && npm run build && check-es3-syntax lib/ dist/ --kill --print",
+    "prepare": "npm run clean && npm run check && npm run build && check-es3-syntax lib/ dist/ --kill --print"
   },
   "repository": {
     "type": "git",
