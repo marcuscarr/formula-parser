@@ -2,12 +2,13 @@
 # yarn lockfile v1
 
 
-"@handsontable/formulajs@^1.2.3":
+"@handsontable/formulajs@github:RiffynInc/formula.js":
   version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@handsontable/formulajs/-/formulajs-1.2.3.tgz#a98b98bc3d23832730646e3bbd6194413f8faade"
+  resolved "https://codeload.github.com/RiffynInc/formula.js/tar.gz/843b6193632030ad41492d6a4330d4b0f99dbec1"
   dependencies:
     bessel "^0.2.0"
     jStat "^1.7.0"
+    moment "^2.21.0"
     numbro "^1.11.0"
 
 JSONSelect@0.4.0:
@@ -3393,6 +3394,10 @@ mkdirp@0.x.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+moment@^2.21.0:
+  version "2.21.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.21.0.tgz#2a114b51d2a6ec9e6d83cf803f838a878d8a023a"
 
 ms@2.0.0:
   version "2.0.0"
