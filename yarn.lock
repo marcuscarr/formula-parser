@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@handsontable/formulajs@github:RiffynInc/formula.js":
+"@handsontable/formulajs@https://github.com/RiffynInc/formula.js/archive/843b6193632030ad41492d6a4330d4b0f99dbec1.tar.gz":
   version "1.2.3"
-  resolved "https://codeload.github.com/RiffynInc/formula.js/tar.gz/843b6193632030ad41492d6a4330d4b0f99dbec1"
+  resolved "https://github.com/RiffynInc/formula.js/archive/843b6193632030ad41492d6a4330d4b0f99dbec1.tar.gz#bd97e900e636fa4f70199b9d66fe946b0674a764"
   dependencies:
     bessel "^0.2.0"
     jStat "^1.7.0"
