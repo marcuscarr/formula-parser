@@ -83,7 +83,7 @@
     "webpack": "^3.2.0"
   },
   "dependencies": {
-    "@handsontable/formulajs": "^1.2.3",
+    "@handsontable/formulajs": "github:RiffynInc/formula.js",
     "tiny-emitter": "^2.0.1"
   },
   "jest": {
