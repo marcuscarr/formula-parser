@@ -4,8 +4,6 @@ coverage
 *.log
 .idea
 tmp/
-lib
-es
 coverage
 
 dev.html
