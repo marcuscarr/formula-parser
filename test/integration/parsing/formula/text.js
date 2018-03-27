@@ -25,6 +25,13 @@ describe('.parse() text formulas', () => {
     expect(parser.parse('CODE("a")')).toMatchObject({error: null, result: 97});
   });
 
+  it('CONCAT', () => {
+    expect(parser.parse('CONCAT()')).toMatchObject({error: null, result: ''});
+    expect(parser.parse('CONCAT("a")')).toMatchObject({error: null, result: 'a'});
+    expect(parser.parse('CONCAT("a", 1)')).toMatchObject({error: null, result: 'a1'});
+    expect(parser.parse('CONCAT("a", 1, TRUE)')).toMatchObject({error: null, result: 'a1TRUE'});
+  });
+
   it('CONCATENATE', () => {
     expect(parser.parse('CONCATENATE()')).toMatchObject({error: null, result: ''});
     expect(parser.parse('CONCATENATE("a")')).toMatchObject({error: null, result: 'a'});
