@@ -13,7 +13,7 @@ export default function func(first) {
   }, toNumber(first));
 
   if (isNaN(result)) {
-    throw Error(ERROR_VALUE);
+    return Error(ERROR_VALUE);
   }
 
   return result;
