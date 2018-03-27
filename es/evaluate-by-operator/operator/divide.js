@@ -13,10 +13,10 @@ export default function func(first) {
   }, toNumber(first));
 
   if (result === Infinity) {
-    throw Error(ERROR_DIV_ZERO);
+    return Error(ERROR_DIV_ZERO);
   }
   if (isNaN(result)) {
-    throw Error(ERROR_VALUE);
+    return Error(ERROR_VALUE);
   }
 
   return result;

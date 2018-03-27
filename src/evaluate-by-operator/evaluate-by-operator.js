@@ -48,10 +48,10 @@ export default function evaluateByOperator(operator, params = [], emitter) {
         }
       });
       if (value === void 0) {
-        throw e;
+        return e;
       }
     } else {
-      throw e;
+      return e;
     }
   }
   return value;
