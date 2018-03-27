@@ -7,7 +7,7 @@ export default function func(first, ...rest) {
   const result = rest.reduce((acc, value) => acc * toNumber(value), toNumber(first));
 
   if (isNaN(result)) {
-    throw Error(ERROR_VALUE);
+    return Error(ERROR_VALUE);
   }
 
   return result;

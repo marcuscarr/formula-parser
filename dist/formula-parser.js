@@ -29216,10 +29216,10 @@ function evaluateByOperator(operator) {
         }
       });
       if (value === void 0) {
-        throw e;
+        return e;
       }
     } else {
-      throw e;
+      return e;
     }
   }
   return value;
@@ -29285,7 +29285,7 @@ function func(first) {
   }, (0, _number.toNumber)(first));
 
   if (isNaN(result)) {
-    throw Error(_error.ERROR_VALUE);
+    return Error(_error.ERROR_VALUE);
   }
 
   return result;
@@ -29343,10 +29343,10 @@ function func(first) {
   }, (0, _number.toNumber)(first));
 
   if (result === Infinity) {
-    throw Error(_error.ERROR_DIV_ZERO);
+    return Error(_error.ERROR_DIV_ZERO);
   }
   if (isNaN(result)) {
-    throw Error(_error.ERROR_VALUE);
+    return Error(_error.ERROR_VALUE);
   }
 
   return result;
@@ -31856,7 +31856,7 @@ function func(first) {
   }, (0, _number.toNumber)(first));
 
   if (isNaN(result)) {
-    throw Error(_error.ERROR_VALUE);
+    return Error(_error.ERROR_VALUE);
   }
 
   return result;
@@ -31891,7 +31891,7 @@ function func(first) {
   }, (0, _number.toNumber)(first));
 
   if (isNaN(result)) {
-    throw Error(_error.ERROR_VALUE);
+    return Error(_error.ERROR_VALUE);
   }
 
   return result;
@@ -31937,7 +31937,7 @@ function func(exp1, exp2) {
   var result = Math.pow((0, _number.toNumber)(exp1), (0, _number.toNumber)(exp2));
 
   if (isNaN(result)) {
-    throw Error(_error.ERROR_VALUE);
+    return Error(_error.ERROR_VALUE);
   }
 
   return result;
