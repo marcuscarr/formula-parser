@@ -44,28 +44,4 @@ describe('Public API', () => {
   it('error should be defined', () => {
     expect(lib.error).toBeDefined();
   });
-
-  it('extractLabel should be defined', () => {
-    expect(lib.extractLabel).toBeDefined();
-  });
-
-  it('toLabel should be defined', () => {
-    expect(lib.toLabel).toBeDefined();
-  });
-
-  it('columnIndexToLabel should be defined', () => {
-    expect(lib.columnIndexToLabel).toBeDefined();
-  });
-
-  it('columnLabelToIndex should be defined', () => {
-    expect(lib.columnLabelToIndex).toBeDefined();
-  });
-
-  it('rowIndexToLabel should be defined', () => {
-    expect(lib.rowIndexToLabel).toBeDefined();
-  });
-
-  it('rowLabelToIndex should be defined', () => {
-    expect(lib.rowLabelToIndex).toBeDefined();
-  });
 });

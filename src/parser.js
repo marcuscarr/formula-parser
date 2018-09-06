@@ -4,7 +4,6 @@ import {Parser as GrammarParser} from './grammar-parser/grammar-parser';
 import {trimEdges} from './helper/string';
 import {toNumber, invertNumber} from './helper/number';
 import errorParser, {isValidStrict as isErrorValid, ERROR, ERROR_NAME} from './error';
-import {extractLabel, toLabel} from './helper/cell';
 
 /**
  * @class Parser
@@ -21,8 +20,6 @@ class Parser extends Emitter {
       callVariable: (variable) => this._callVariable(variable),
       evaluateByOperator: (operator, params) => evaluateByOperator(operator, params, this),
       callFunction: (name, params) => this._callFunction(name, params),
-      cellValue: (value) => this._callCellValue(value),
-      rangeValue: (start, end) => this._callRangeValue(start, end),
     };
     this.variables = Object.create(null);
     this.functions = Object.create(null);
@@ -162,71 +159,6 @@ class Parser extends Emitter {
     });
 
     return value === void 0 ? evaluateByOperator(name, params) : value;
-  }
-
-  /**
-   * Retrieve value by its label (`B3`, `B$3`, `B$3`, `$B$3`).
-   *
-   * @param {String} label Coordinates.
-   * @returns {*}
-   * @private
-   */
-  _callCellValue(label) {
-    label = label.toUpperCase();
-
-    const [row, column] = extractLabel(label);
-    let value = void 0;
-
-    this.emit('callCellValue', {label, row, column}, (_value) => {
-      value = _value;
-    });
-
-    return value;
-  }
-
-  /**
-   * Retrieve value by its label (`B3:A1`, `B$3:A1`, `B$3:$A1`, `$B$3:A$1`).
-   *
-   * @param {String} startLabel Coordinates of the first cell.
-   * @param {String} endLabel Coordinates of the last cell.
-   * @returns {Array} Returns an array of mixed values.
-   * @private
-   */
-  _callRangeValue(startLabel, endLabel) {
-    startLabel = startLabel.toUpperCase();
-    endLabel = endLabel.toUpperCase();
-
-    const [startRow, startColumn] = extractLabel(startLabel);
-    const [endRow, endColumn] = extractLabel(endLabel);
-    let startCell = {};
-    let endCell = {};
-
-    if (startRow.index <= endRow.index) {
-      startCell.row = startRow;
-      endCell.row = endRow;
-    } else {
-      startCell.row = endRow;
-      endCell.row = startRow;
-    }
-
-    if (startColumn.index <= endColumn.index) {
-      startCell.column = startColumn;
-      endCell.column = endColumn;
-    } else {
-      startCell.column = endColumn;
-      endCell.column = startColumn;
-    }
-
-    startCell.label = toLabel(startCell.row, startCell.column);
-    endCell.label = toLabel(endCell.row, endCell.column);
-
-    let value = [];
-
-    this.emit('callRangeValue', startCell, endCell, (_value = []) => {
-      value = _value;
-    });
-
-    return value;
   }
 
   /**
