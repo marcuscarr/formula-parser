@@ -10,7 +10,6 @@ import { Parser as GrammarParser } from './grammar-parser/grammar-parser';
 import { trimEdges } from './helper/string';
 import { toNumber, invertNumber } from './helper/number';
 import errorParser, { isValidStrict as isErrorValid, ERROR, ERROR_NAME } from './error';
-import { extractLabel, toLabel } from './helper/cell';
 
 /**
  * @class Parser
@@ -40,12 +39,6 @@ var Parser = function (_Emitter) {
       },
       callFunction: function callFunction(name, params) {
         return _this._callFunction(name, params);
-      },
-      cellValue: function cellValue(value) {
-        return _this._callCellValue(value);
-      },
-      rangeValue: function rangeValue(start, end) {
-        return _this._callRangeValue(start, end);
       }
     };
     _this.variables = Object.create(null);
@@ -200,86 +193,6 @@ var Parser = function (_Emitter) {
     });
 
     return value === void 0 ? _evaluateByOperator(name, params) : value;
-  };
-
-  /**
-   * Retrieve value by its label (`B3`, `B$3`, `B$3`, `$B$3`).
-   *
-   * @param {String} label Coordinates.
-   * @returns {*}
-   * @private
-   */
-
-
-  Parser.prototype._callCellValue = function _callCellValue(label) {
-    label = label.toUpperCase();
-
-    var _extractLabel = extractLabel(label),
-        row = _extractLabel[0],
-        column = _extractLabel[1];
-
-    var value = void 0;
-
-    this.emit('callCellValue', { label: label, row: row, column: column }, function (_value) {
-      value = _value;
-    });
-
-    return value;
-  };
-
-  /**
-   * Retrieve value by its label (`B3:A1`, `B$3:A1`, `B$3:$A1`, `$B$3:A$1`).
-   *
-   * @param {String} startLabel Coordinates of the first cell.
-   * @param {String} endLabel Coordinates of the last cell.
-   * @returns {Array} Returns an array of mixed values.
-   * @private
-   */
-
-
-  Parser.prototype._callRangeValue = function _callRangeValue(startLabel, endLabel) {
-    startLabel = startLabel.toUpperCase();
-    endLabel = endLabel.toUpperCase();
-
-    var _extractLabel2 = extractLabel(startLabel),
-        startRow = _extractLabel2[0],
-        startColumn = _extractLabel2[1];
-
-    var _extractLabel3 = extractLabel(endLabel),
-        endRow = _extractLabel3[0],
-        endColumn = _extractLabel3[1];
-
-    var startCell = {};
-    var endCell = {};
-
-    if (startRow.index <= endRow.index) {
-      startCell.row = startRow;
-      endCell.row = endRow;
-    } else {
-      startCell.row = endRow;
-      endCell.row = startRow;
-    }
-
-    if (startColumn.index <= endColumn.index) {
-      startCell.column = startColumn;
-      endCell.column = endColumn;
-    } else {
-      startCell.column = endColumn;
-      endCell.column = startColumn;
-    }
-
-    startCell.label = toLabel(startCell.row, startCell.column);
-    endCell.label = toLabel(endCell.row, endCell.column);
-
-    var value = [];
-
-    this.emit('callRangeValue', startCell, endCell, function () {
-      var _value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
-      value = _value;
-    });
-
-    return value;
   };
 
   /**

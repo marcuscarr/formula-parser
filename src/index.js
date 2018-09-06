@@ -10,14 +10,6 @@ import error, {
   ERROR_REF,
   ERROR_VALUE,
 } from './error';
-import {
-  extractLabel,
-  toLabel,
-  columnIndexToLabel,
-  columnLabelToIndex,
-  rowIndexToLabel,
-  rowLabelToIndex,
-} from './helper/cell';
 
 export {
   SUPPORTED_FORMULAS,
@@ -31,10 +23,4 @@ export {
   ERROR_VALUE,
   Parser,
   error,
-  extractLabel,
-  toLabel,
-  columnIndexToLabel,
-  columnLabelToIndex,
-  rowIndexToLabel,
-  rowLabelToIndex,
 };

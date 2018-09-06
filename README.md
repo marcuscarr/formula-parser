@@ -40,7 +40,6 @@ It supports:
  * All JavaScript Math constants like `PI()`, `E()`, `LN10()`, `LN2()`, `LOG10E()`, `LOG2E()`, `SQRT1_2()`, `SQRT2()`;
  * String operations like `&` (concatenation eq. `parser.parse('-(2&5)');` will return `-25`);
  * All excel formulas defined in [formula.js](https://github.com/handsontable/formula.js);
- * Relative and absolute cell coordinates like `A1`, `$A1`, `A$1`, `$A$1`;
  * Build-in variables like `TRUE`, `FALSE`, `NULL`
  * Custom variables;
  * Custom functions/formulas;
@@ -158,67 +157,6 @@ parser.on('callFunction', function(name, params, done) {
 });
 
 parser.parse('ADD_5(3)'); // returns `8`
-```
-
-### 'callCellValue' (cellCoord, done)
-
-Fired while retrieving cell value by its label (eq: `B3`, `B$3`, `B$3`, `$B$3`).
-
-```js
-parser.on('callCellValue', function(cellCoord, done) {
-  // using label
-  if (cellCoord.label === 'B$6') {
-    done('hello');
-  }
-  // or using indexes
-  if (cellCoord.row.index === 5 && cellCoord.row.isAbsolute && cellCoord.column.index === 1 && !cellCoord.column.isAbsolute) {
-    done('hello');
-  }
-
-  if (cellCoord.label === 'C6') {
-    done(0.75);
-  }
-});
-
-parser.parse('B$6'); // returns `"hello"`
-parser.parse('B$6&" world"'); // returns `"hello world"`
-parser.parse('FISHER(C6)'); // returns `0.9729550745276566`
-```
-
-### 'callRangeValue' (startCellCoord, endCellCoord, done)
-
-Fired while retrieving cells range value (eq: `A1:B3`, `$A1:B$3`, `A$1:B$3`, `$A$1:$B$3`).
-
-```js
-parser.on('callRangeValue', function(startCellCoord, endCellCoord, done) {
-  var data = [
-    [1, 2, 3, 4, 5],
-    [6, 7, 8, 9, 10],
-    [11, 12, 13, 14, 15],
-    [16, 17, 18, 19, 20],
-  ];
-  var fragment = [];
-
-  for (var row = startCellCoord.row.index; row <= endCellCoord.row.index; row++) {
-    var rowData = data[row];
-    var colFragment = [];
-
-    for (var col = startCellCoord.column.index; col <= endCellCoord.column.index; col++) {
-      colFragment.push(rowData[col]);
-    }
-    fragment.push(colFragment);
-  }
-
-  if (fragment) {
-    done(fragment);
-  }
-});
-
-parser.parse('JOIN(A1:E2)'); // returns `"1,2,3,4,5,6,7,8,9,10"`
-parser.parse('COLUMNS(A1:E2)'); // returns `5`
-parser.parse('ROWS(A1:E2)'); // returns `2`
-parser.parse('COUNT(A1:E2)'); // returns `10`
-parser.parse('COUNTIF(A1:E2, ">5")'); // returns `5`
 ```
 
 ### Want to help?
