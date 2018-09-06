@@ -98,14 +98,6 @@ describe('.parse() statistical formulas', () => {
     expect(parser.parse('CHISQ.INV.RT(0.4, 6)')).toBeMatchCloseTo({error: null, result: 6.2107571945266935});
   });
 
-  it('COLUMN', () => {
-    expect(parser.parse('COLUMN()')).toMatchObject({error: '#N/A', result: null});
-  });
-
-  it('COLUMNS', () => {
-    expect(parser.parse('COLUMNS()')).toMatchObject({error: '#N/A', result: null});
-  });
-
   it('CONFIDENCE', () => {
     expect(parser.parse('CONFIDENCE()')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('CONFIDENCE(0.5)')).toMatchObject({error: '#VALUE!', result: null});
@@ -593,14 +585,6 @@ describe('.parse() statistical formulas', () => {
     expect(parser.parse('RANKEQ("dwe", foo, TRUE)')).toMatchObject({error: '#VALUE!', result: null});
   });
 
-  it('ROW', () => {
-    expect(parser.parse('ROW()')).toMatchObject({error: '#N/A', result: null});
-  });
-
-  it('ROWS', () => {
-    expect(parser.parse('ROWS()')).toMatchObject({error: '#N/A', result: null});
-  });
-
   it('RSQ', () => {
     parser.setVariable('foo', [2, 3, 9, 1, 8, 7, 5]);
     parser.setVariable('bar', [6, 5, 11, 7, 5, 4, 4]);
@@ -685,10 +669,6 @@ describe('.parse() statistical formulas', () => {
 
     expect(parser.parse('STEYX(foo, bar)')).toBeMatchCloseTo({error: null, result: 3.305718950210041});
     expect(parser.parse('STEYX(baz, bar)')).toMatchObject({error: '#VALUE!', result: null});
-  });
-
-  it('TRANSPOSE', () => {
-    expect(parser.parse('TRANSPOSE()')).toMatchObject({error: '#N/A', result: null});
   });
 
   it('TDIST', () => {
