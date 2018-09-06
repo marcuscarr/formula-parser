@@ -83,12 +83,6 @@ describe('.parse() financial formulas', () => {
     expect(parser.parse('FV(1.1, 10, -200, -500, 1)')).toMatchObject({error: null, result: 1470480.4135322701});
   });
 
-  it('FVSCHEDULE', () => {
-    parser.on('callRangeValue', (a, b, done) => done([[0.09, 0.1, 0.11]]));
-
-    expect(parser.parse('FVSCHEDULE(100, A1:C1)')).toMatchObject({error: null, result: 133.08900000000003});
-  });
-
   it('IPMT', () => {
     expect(parser.parse('IPMT()')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('IPMT(0.2, 6)')).toMatchObject({error: '#VALUE!', result: null});
@@ -98,24 +92,12 @@ describe('.parse() financial formulas', () => {
     expect(parser.parse('IPMT(0.2, 6, 24, 1000, 200, 1)')).toMatchObject({error: null, result: -162.87461627732137});
   });
 
-  it('IRR', () => {
-    parser.on('callRangeValue', (a, b, done) => done([[-75000, 12000, 15000, 18000, 21000, 24000]]));
-
-    expect(parser.parse('IRR(A1:C1)')).toMatchObject({error: null, result: 0.05715142887178453});
-  });
-
   it('ISPMT', () => {
     expect(parser.parse('ISPMT()')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('ISPMT(1.1, 2)')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('ISPMT(1.1, 2, 16)')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('ISPMT(1.1, 2, 16)')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('ISPMT(1.1, 2, 16, 1000)')).toMatchObject({error: null, result: -962.5});
-  });
-
-  it('MIRR', () => {
-    parser.on('callRangeValue', (a, b, done) => done([[-75000, 12000, 15000, 18000, 21000, 24000]]));
-
-    expect(parser.parse('MIRR(A1:C1, 0.1, 0.12)')).toBeMatchCloseTo({error: null, result: 0.07971710360838036});
   });
 
   it('NOMINAL', () => {
@@ -225,40 +207,5 @@ describe('.parse() financial formulas', () => {
     expect(parser.parse('TBILLYIELD("03/31/2008")')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('TBILLYIELD("03/31/2008", "06/01/2008")')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('TBILLYIELD("03/31/2008", "06/01/2008", 0.09)')).toBeMatchCloseTo({error: null, result: 6551.475409836065});
-  });
-
-  // TODO: Not supported yet
-  xit('XIRR', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      let values;
-
-      if (a.label === 'A1' && b.label === 'C1') {
-        values = [[-10000, 2750, 4250, 3250, 2750]];
-
-      } else if (a.label === 'A2' && b.label === 'C2') {
-        values = [['01/jan/08', '01/mar/08', '30/oct/08', '15/feb/09', '01/apr/09']];
-      }
-
-      done(values);
-    });
-
-    expect(parser.parse('XIRR(A1:C1, A2:C2, 0.1)')).toBeMatchCloseTo({error: null, result: 0.373374019797564});
-  });
-
-  it('XNPV', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      let values;
-
-      if (a.label === 'A1' && b.label === 'C1') {
-        values = [[-10000, 2750, 4250, 3250, 2750]];
-
-      } else if (a.label === 'A2' && b.label === 'C2') {
-        values = [['01/01/2008', '03/01/2008', '10/30/2008', '02/15/2009', '04/01/2009']];
-      }
-
-      done(values);
-    });
-
-    expect(parser.parse('XNPV(0.09, A1:C1, A2:C2)')).toBeMatchCloseTo({error: null, result: 2086.6718943024616});
   });
 });

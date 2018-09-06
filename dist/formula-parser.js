@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 140);
+/******/ 	return __webpack_require__(__webpack_require__.s = 139);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1912,7 +1912,7 @@ function loadLocale(name) {
         try {
             oldLocale = globalLocale._abbr;
             var aliasedRequire = require;
-            __webpack_require__(152)("./" + name);
+            __webpack_require__(151)("./" + name);
             getSetGlobalLocale(oldLocale);
         } catch (e) {}
     }
@@ -10012,7 +10012,7 @@ function serial(date) {
 
     numbro.loadCulturesInNode = function() {
         // TODO: Rename the folder in 2.0.0
-        var cultures = __webpack_require__(151);
+        var cultures = __webpack_require__(150);
 
         for(var langLocaleCode in cultures) {
             if(langLocaleCode) {
@@ -26962,7 +26962,7 @@ var error = __webpack_require__(1);
 var jStat = __webpack_require__(135).jStat;
 var text = __webpack_require__(7);
 var utils = __webpack_require__(2);
-var bessel = __webpack_require__(153);
+var bessel = __webpack_require__(152);
 
 function isValidBinaryNumber(number) {
   return (/^[01]{1,10}$/).test(number);
@@ -28542,142 +28542,9 @@ exports['default'] = SUPPORTED_FORMULAS;
 
 
 exports.__esModule = true;
-exports.rowLabelToIndex = rowLabelToIndex;
-exports.rowIndexToLabel = rowIndexToLabel;
-exports.columnLabelToIndex = columnLabelToIndex;
-exports.columnIndexToLabel = columnIndexToLabel;
-exports.extractLabel = extractLabel;
-exports.toLabel = toLabel;
-/**
- * Convert row label to index.
- *
- * @param {String} label Row label (eq. '1', '5')
- * @returns {Number} Returns -1 if label is not recognized otherwise proper row index.
- */
-function rowLabelToIndex(label) {
-  var result = parseInt(label, 10);
+exports.error = exports.Parser = exports.ERROR_VALUE = exports.ERROR_REF = exports.ERROR_NUM = exports.ERROR_NULL = exports.ERROR_NOT_AVAILABLE = exports.ERROR_NAME = exports.ERROR_DIV_ZERO = exports.ERROR = exports.SUPPORTED_FORMULAS = undefined;
 
-  if (isNaN(result)) {
-    result = -1;
-  } else {
-    result = Math.max(result - 1, -1);
-  }
-
-  return result;
-}
-
-/**
- * Convert row index to label.
- *
- * @param {Number} row Row index.
- * @returns {String} Returns row label (eq. '1', '7').
- */
-function rowIndexToLabel(row) {
-  var result = '';
-
-  if (row >= 0) {
-    result = '' + (row + 1);
-  }
-
-  return result;
-}
-
-var COLUMN_LABEL_BASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var COLUMN_LABEL_BASE_LENGTH = COLUMN_LABEL_BASE.length;
-
-/**
- * Convert column label to index.
- *
- * @param {String} label Column label (eq. 'ABB', 'CNQ')
- * @returns {Number} Returns -1 if label is not recognized otherwise proper column index.
- */
-function columnLabelToIndex(label) {
-  var result = 0;
-
-  if (typeof label === 'string') {
-    label = label.toUpperCase();
-
-    for (var i = 0, j = label.length - 1; i < label.length; i += 1, j -= 1) {
-      result += Math.pow(COLUMN_LABEL_BASE_LENGTH, j) * (COLUMN_LABEL_BASE.indexOf(label[i]) + 1);
-    }
-  }
-  --result;
-
-  return result;
-}
-
-/**
- * Convert column index to label.
- *
- * @param {Number} column Column index.
- * @returns {String} Returns column label (eq. 'ABB', 'CNQ').
- */
-function columnIndexToLabel(column) {
-  var result = '';
-
-  while (column >= 0) {
-    result = String.fromCharCode(column % COLUMN_LABEL_BASE_LENGTH + 97) + result;
-    column = Math.floor(column / COLUMN_LABEL_BASE_LENGTH) - 1;
-  }
-
-  return result.toUpperCase();
-}
-
-var LABEL_EXTRACT_REGEXP = /^([$])?([A-Za-z]+)([$])?([0-9]+)$/;
-
-/**
- * Extract cell coordinates.
- *
- * @param {String} label Cell coordinates (eq. 'A1', '$B6', '$N$98').
- * @returns {Array} Returns an array of objects.
- */
-function extractLabel(label) {
-  if (typeof label !== 'string' || !LABEL_EXTRACT_REGEXP.test(label)) {
-    return [];
-  }
-
-  var _label$toUpperCase$ma = label.toUpperCase().match(LABEL_EXTRACT_REGEXP),
-      columnAbs = _label$toUpperCase$ma[1],
-      column = _label$toUpperCase$ma[2],
-      rowAbs = _label$toUpperCase$ma[3],
-      row = _label$toUpperCase$ma[4];
-
-  return [{
-    index: rowLabelToIndex(row),
-    label: row,
-    isAbsolute: rowAbs === '$'
-  }, {
-    index: columnLabelToIndex(column),
-    label: column,
-    isAbsolute: columnAbs === '$'
-  }];
-}
-
-/**
- * Convert row and column indexes into cell label.
- *
- * @param {Object} row Object with `index` and `isAbsolute` properties.
- * @param {Object} column Object with `index` and `isAbsolute` properties.
- * @returns {String} Returns cell label.
- */
-function toLabel(row, column) {
-  var rowLabel = (row.isAbsolute ? '$' : '') + rowIndexToLabel(row.index);
-  var columnLabel = (column.isAbsolute ? '$' : '') + columnIndexToLabel(column.index);
-
-  return columnLabel + rowLabel;
-}
-
-/***/ }),
-/* 140 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.rowLabelToIndex = exports.rowIndexToLabel = exports.columnLabelToIndex = exports.columnIndexToLabel = exports.toLabel = exports.extractLabel = exports.error = exports.Parser = exports.ERROR_VALUE = exports.ERROR_REF = exports.ERROR_NUM = exports.ERROR_NULL = exports.ERROR_NOT_AVAILABLE = exports.ERROR_NAME = exports.ERROR_DIV_ZERO = exports.ERROR = exports.SUPPORTED_FORMULAS = undefined;
-
-var _parser = __webpack_require__(141);
+var _parser = __webpack_require__(140);
 
 var _parser2 = _interopRequireDefault(_parser);
 
@@ -28688,8 +28555,6 @@ var _supportedFormulas2 = _interopRequireDefault(_supportedFormulas);
 var _error = __webpack_require__(3);
 
 var _error2 = _interopRequireDefault(_error);
-
-var _cell = __webpack_require__(139);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -28704,15 +28569,9 @@ exports.ERROR_REF = _error.ERROR_REF;
 exports.ERROR_VALUE = _error.ERROR_VALUE;
 exports.Parser = _parser2['default'];
 exports.error = _error2['default'];
-exports.extractLabel = _cell.extractLabel;
-exports.toLabel = _cell.toLabel;
-exports.columnIndexToLabel = _cell.columnIndexToLabel;
-exports.columnLabelToIndex = _cell.columnLabelToIndex;
-exports.rowIndexToLabel = _cell.rowIndexToLabel;
-exports.rowLabelToIndex = _cell.rowLabelToIndex;
 
 /***/ }),
-/* 141 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28720,25 +28579,23 @@ exports.rowLabelToIndex = _cell.rowLabelToIndex;
 
 exports.__esModule = true;
 
-var _tinyEmitter = __webpack_require__(142);
+var _tinyEmitter = __webpack_require__(141);
 
 var _tinyEmitter2 = _interopRequireDefault(_tinyEmitter);
 
-var _evaluateByOperator2 = __webpack_require__(143);
+var _evaluateByOperator2 = __webpack_require__(142);
 
 var _evaluateByOperator3 = _interopRequireDefault(_evaluateByOperator2);
 
-var _grammarParser = __webpack_require__(166);
+var _grammarParser = __webpack_require__(165);
 
-var _string = __webpack_require__(167);
+var _string = __webpack_require__(166);
 
 var _number = __webpack_require__(4);
 
 var _error = __webpack_require__(3);
 
 var _error2 = _interopRequireDefault(_error);
-
-var _cell = __webpack_require__(139);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -28775,12 +28632,6 @@ var Parser = function (_Emitter) {
       },
       callFunction: function callFunction(name, params) {
         return _this._callFunction(name, params);
-      },
-      cellValue: function cellValue(value) {
-        return _this._callCellValue(value);
-      },
-      rangeValue: function rangeValue(start, end) {
-        return _this._callRangeValue(start, end);
       }
     };
     _this.variables = Object.create(null);
@@ -28938,86 +28789,6 @@ var Parser = function (_Emitter) {
   };
 
   /**
-   * Retrieve value by its label (`B3`, `B$3`, `B$3`, `$B$3`).
-   *
-   * @param {String} label Coordinates.
-   * @returns {*}
-   * @private
-   */
-
-
-  Parser.prototype._callCellValue = function _callCellValue(label) {
-    label = label.toUpperCase();
-
-    var _extractLabel = (0, _cell.extractLabel)(label),
-        row = _extractLabel[0],
-        column = _extractLabel[1];
-
-    var value = void 0;
-
-    this.emit('callCellValue', { label: label, row: row, column: column }, function (_value) {
-      value = _value;
-    });
-
-    return value;
-  };
-
-  /**
-   * Retrieve value by its label (`B3:A1`, `B$3:A1`, `B$3:$A1`, `$B$3:A$1`).
-   *
-   * @param {String} startLabel Coordinates of the first cell.
-   * @param {String} endLabel Coordinates of the last cell.
-   * @returns {Array} Returns an array of mixed values.
-   * @private
-   */
-
-
-  Parser.prototype._callRangeValue = function _callRangeValue(startLabel, endLabel) {
-    startLabel = startLabel.toUpperCase();
-    endLabel = endLabel.toUpperCase();
-
-    var _extractLabel2 = (0, _cell.extractLabel)(startLabel),
-        startRow = _extractLabel2[0],
-        startColumn = _extractLabel2[1];
-
-    var _extractLabel3 = (0, _cell.extractLabel)(endLabel),
-        endRow = _extractLabel3[0],
-        endColumn = _extractLabel3[1];
-
-    var startCell = {};
-    var endCell = {};
-
-    if (startRow.index <= endRow.index) {
-      startCell.row = startRow;
-      endCell.row = endRow;
-    } else {
-      startCell.row = endRow;
-      endCell.row = startRow;
-    }
-
-    if (startColumn.index <= endColumn.index) {
-      startCell.column = startColumn;
-      endCell.column = endColumn;
-    } else {
-      startCell.column = endColumn;
-      endCell.column = startColumn;
-    }
-
-    startCell.label = (0, _cell.toLabel)(startCell.row, startCell.column);
-    endCell.label = (0, _cell.toLabel)(endCell.row, endCell.column);
-
-    var value = [];
-
-    this.emit('callRangeValue', startCell, endCell, function () {
-      var _value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
-      value = _value;
-    });
-
-    return value;
-  };
-
-  /**
    * Try to throw error by its name.
    *
    * @param {String} errorName Error name.
@@ -29040,7 +28811,7 @@ var Parser = function (_Emitter) {
 exports['default'] = Parser;
 
 /***/ }),
-/* 142 */
+/* 141 */
 /***/ (function(module, exports) {
 
 function E () {
@@ -29112,7 +28883,7 @@ module.exports = E;
 
 
 /***/ }),
-/* 143 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29122,55 +28893,55 @@ exports.__esModule = true;
 exports['default'] = evaluateByOperator;
 exports.registerOperation = registerOperation;
 
-var _add = __webpack_require__(144);
+var _add = __webpack_require__(143);
 
 var _add2 = _interopRequireDefault(_add);
 
-var _ampersand = __webpack_require__(145);
+var _ampersand = __webpack_require__(144);
 
 var _ampersand2 = _interopRequireDefault(_ampersand);
 
-var _divide = __webpack_require__(146);
+var _divide = __webpack_require__(145);
 
 var _divide2 = _interopRequireDefault(_divide);
 
-var _equal = __webpack_require__(147);
+var _equal = __webpack_require__(146);
 
 var _equal2 = _interopRequireDefault(_equal);
 
-var _formulaFunction = __webpack_require__(148);
+var _formulaFunction = __webpack_require__(147);
 
 var _formulaFunction2 = _interopRequireDefault(_formulaFunction);
 
-var _greaterThan = __webpack_require__(158);
+var _greaterThan = __webpack_require__(157);
 
 var _greaterThan2 = _interopRequireDefault(_greaterThan);
 
-var _greaterThanOrEqual = __webpack_require__(159);
+var _greaterThanOrEqual = __webpack_require__(158);
 
 var _greaterThanOrEqual2 = _interopRequireDefault(_greaterThanOrEqual);
 
-var _lessThan = __webpack_require__(160);
+var _lessThan = __webpack_require__(159);
 
 var _lessThan2 = _interopRequireDefault(_lessThan);
 
-var _lessThanOrEqual = __webpack_require__(161);
+var _lessThanOrEqual = __webpack_require__(160);
 
 var _lessThanOrEqual2 = _interopRequireDefault(_lessThanOrEqual);
 
-var _minus = __webpack_require__(162);
+var _minus = __webpack_require__(161);
 
 var _minus2 = _interopRequireDefault(_minus);
 
-var _multiply = __webpack_require__(163);
+var _multiply = __webpack_require__(162);
 
 var _multiply2 = _interopRequireDefault(_multiply);
 
-var _notEqual = __webpack_require__(164);
+var _notEqual = __webpack_require__(163);
 
 var _notEqual2 = _interopRequireDefault(_notEqual);
 
-var _power = __webpack_require__(165);
+var _power = __webpack_require__(164);
 
 var _power2 = _interopRequireDefault(_power);
 
@@ -29259,7 +29030,7 @@ registerOperation(_notEqual2['default'].SYMBOL, _notEqual2['default']);
 registerOperation(_minus2['default'].SYMBOL, _minus2['default']);
 
 /***/ }),
-/* 144 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29294,7 +29065,7 @@ function func(first) {
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 145 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29317,7 +29088,7 @@ function func() {
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 146 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29355,7 +29126,7 @@ function func(first) {
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 147 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29372,7 +29143,7 @@ function func(exp1, exp2) {
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 148 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29382,7 +29153,7 @@ exports.__esModule = true;
 exports.SYMBOL = undefined;
 exports['default'] = func;
 
-var _formulajs = __webpack_require__(149);
+var _formulajs = __webpack_require__(148);
 
 var formulajs = _interopRequireWildcard(_formulajs);
 
@@ -29443,20 +29214,20 @@ func.isFactory = true;
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 149 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var categories = [
-  __webpack_require__(150),
-  __webpack_require__(154),
+  __webpack_require__(149),
+  __webpack_require__(153),
   __webpack_require__(137),
-  __webpack_require__(155),
+  __webpack_require__(154),
   __webpack_require__(5),
   __webpack_require__(7),
   __webpack_require__(9),
-  __webpack_require__(156),
+  __webpack_require__(155),
   __webpack_require__(8),
-  __webpack_require__(157),
+  __webpack_require__(156),
   __webpack_require__(6),
   __webpack_require__(136)
 ];
@@ -29470,7 +29241,7 @@ for (var c in categories) {
 
 
 /***/ }),
-/* 150 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var mathTrig = __webpack_require__(5);
@@ -29563,13 +29334,13 @@ exports.ZTEST = statistical.Z.TEST;
 
 
 /***/ }),
-/* 151 */
+/* 150 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 152 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -29832,10 +29603,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 152;
+webpackContext.id = 151;
 
 /***/ }),
-/* 153 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var M = Math;
@@ -30050,7 +29821,7 @@ if(true) {
 
 
 /***/ }),
-/* 154 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var error = __webpack_require__(1);
@@ -30443,7 +30214,7 @@ exports.DVARP = function(database, field, criteria) {
 
 
 /***/ }),
-/* 155 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var error = __webpack_require__(1);
@@ -30560,7 +30331,7 @@ exports.SWITCH = function () {
 
 
 /***/ }),
-/* 156 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var error = __webpack_require__(1);
@@ -31656,7 +31427,7 @@ exports.YIELDMAT = function() {
 
 
 /***/ }),
-/* 157 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var error = __webpack_require__(1);
@@ -31762,7 +31533,7 @@ exports.HLOOKUP = function (needle, table, index, rangeLookup) {
 
 
 /***/ }),
-/* 158 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31779,7 +31550,7 @@ function func(exp1, exp2) {
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 159 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31796,7 +31567,7 @@ function func(exp1, exp2) {
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 160 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31813,7 +31584,7 @@ function func(exp1, exp2) {
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 161 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31830,7 +31601,7 @@ function func(exp1, exp2) {
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 162 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31865,7 +31636,7 @@ function func(first) {
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 163 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31900,7 +31671,7 @@ function func(first) {
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 164 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31917,7 +31688,7 @@ function func(exp1, exp2) {
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 165 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31946,7 +31717,7 @@ function func(exp1, exp2) {
 func.SYMBOL = SYMBOL;
 
 /***/ }),
-/* 166 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, process) {/* parser generated by jison 0.4.17 */
@@ -32023,12 +31794,12 @@ func.SYMBOL = SYMBOL;
   }
 */
 var grammarParser = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,8],$V2=[1,6],$V3=[1,7],$V4=[1,9],$V5=[1,14],$V6=[1,15],$V7=[1,16],$V8=[1,12],$V9=[1,13],$Va=[1,17],$Vb=[1,19],$Vc=[1,20],$Vd=[1,21],$Ve=[1,22],$Vf=[1,23],$Vg=[1,24],$Vh=[1,25],$Vi=[1,26],$Vj=[1,27],$Vk=[1,28],$Vl=[5,9,10,11,13,14,15,16,17,18,19,20,29,30],$Vm=[5,9,10,11,13,14,15,16,17,18,19,20,29,30,32],$Vn=[5,9,10,11,13,14,15,16,17,18,19,20,29,30,34],$Vo=[5,10,11,13,14,15,16,17,29,30],$Vp=[5,10,13,14,15,16,29,30],$Vq=[5,10,11,13,14,15,16,17,18,19,29,30],$Vr=[13,29,30];
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,8],$V2=[1,6],$V3=[1,7],$V4=[1,9],$V5=[1,11],$V6=[1,12],$V7=[1,13],$V8=[1,15],$V9=[1,16],$Va=[1,17],$Vb=[1,18],$Vc=[1,19],$Vd=[1,20],$Ve=[1,21],$Vf=[1,22],$Vg=[1,23],$Vh=[1,24],$Vi=[5,9,10,11,13,14,15,16,17,18,19,20,24,25],$Vj=[5,9,10,11,13,14,15,16,17,18,19,20,24,25,27],$Vk=[5,9,10,11,13,14,15,16,17,18,19,20,24,25,29],$Vl=[5,10,11,13,14,15,16,17,24,25],$Vm=[5,10,13,14,15,16,24,25],$Vn=[5,10,11,13,14,15,16,17,18,19,24,25],$Vo=[13,24,25];
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"expressions":3,"expression":4,"EOF":5,"variableSequence":6,"number":7,"STRING":8,"&":9,"=":10,"+":11,"(":12,")":13,"<":14,">":15,"NOT":16,"-":17,"*":18,"/":19,"^":20,"FUNCTION":21,"expseq":22,"cell":23,"ABSOLUTE_CELL":24,"RELATIVE_CELL":25,"MIXED_CELL":26,":":27,"ARRAY":28,";":29,",":30,"VARIABLE":31,"DECIMAL":32,"NUMBER":33,"%":34,"ERROR":35,"$accept":0,"$end":1},
-terminals_: {5:"EOF",8:"STRING",9:"&",10:"=",11:"+",12:"(",13:")",14:"<",15:">",16:"NOT",17:"-",18:"*",19:"/",20:"^",21:"FUNCTION",24:"ABSOLUTE_CELL",25:"RELATIVE_CELL",26:"MIXED_CELL",27:":",28:"ARRAY",29:";",30:",",31:"VARIABLE",32:"DECIMAL",33:"NUMBER",34:"%",35:"ERROR"},
-productions_: [0,[3,2],[4,1],[4,1],[4,1],[4,3],[4,3],[4,3],[4,3],[4,4],[4,4],[4,4],[4,3],[4,3],[4,3],[4,3],[4,3],[4,3],[4,3],[4,2],[4,2],[4,3],[4,4],[4,1],[4,1],[4,2],[23,1],[23,1],[23,1],[23,3],[23,3],[23,3],[23,3],[23,3],[23,3],[23,3],[23,3],[23,3],[22,1],[22,1],[22,3],[22,3],[6,1],[6,3],[7,1],[7,3],[7,2],[2,1]],
+symbols_: {"error":2,"expressions":3,"expression":4,"EOF":5,"variableSequence":6,"number":7,"STRING":8,"&":9,"=":10,"+":11,"(":12,")":13,"<":14,">":15,"NOT":16,"-":17,"*":18,"/":19,"^":20,"FUNCTION":21,"expseq":22,"ARRAY":23,";":24,",":25,"VARIABLE":26,"DECIMAL":27,"NUMBER":28,"%":29,"ERROR":30,"$accept":0,"$end":1},
+terminals_: {5:"EOF",8:"STRING",9:"&",10:"=",11:"+",12:"(",13:")",14:"<",15:">",16:"NOT",17:"-",18:"*",19:"/",20:"^",21:"FUNCTION",23:"ARRAY",24:";",25:",",26:"VARIABLE",27:"DECIMAL",28:"NUMBER",29:"%",30:"ERROR"},
+productions_: [0,[3,2],[4,1],[4,1],[4,1],[4,3],[4,3],[4,3],[4,3],[4,4],[4,4],[4,4],[4,3],[4,3],[4,3],[4,3],[4,3],[4,3],[4,3],[4,2],[4,2],[4,3],[4,4],[4,1],[4,2],[22,1],[22,1],[22,3],[22,3],[6,1],[6,3],[7,1],[7,3],[7,2],[2,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -32156,22 +31927,12 @@ case 22:
       this.$ = yy.callFunction($$[$0-3], $$[$0-1]);
 
 break;
-case 26: case 27: case 28:
-
-      this.$ = yy.cellValue($$[$0]);
-
-break;
-case 29: case 30: case 31: case 32: case 33: case 34: case 35: case 36: case 37:
-
-      this.$ = yy.rangeValue($$[$0-2], $$[$0]);
-
-break;
-case 38: case 42:
+case 25: case 29:
 
       this.$ = [$$[$0]];
 
 break;
-case 39:
+case 26:
 
       var result = [];
       var arr = eval("[" + yytext + "]");
@@ -32183,42 +31944,42 @@ case 39:
       this.$ = result;
 
 break;
-case 40: case 41:
+case 27: case 28:
 
       $$[$0-2].push($$[$0]);
       this.$ = $$[$0-2];
 
 break;
-case 43:
+case 30:
 
       this.$ = (Array.isArray($$[$0-2]) ? $$[$0-2] : [$$[$0-2]]);
       this.$.push($$[$0]);
 
 break;
-case 44:
+case 31:
 
       this.$ = $$[$0];
 
 break;
-case 45:
+case 32:
 
       this.$ = ($$[$0-2] + '.' + $$[$0]) * 1;
 
 break;
-case 46:
+case 33:
 
       this.$ = $$[$0-1] * 0.01;
 
 break;
-case 47:
+case 34:
 
       this.$ = yy.throwError($$[$0]);
 
 break;
 }
 },
-table: [{2:11,3:1,4:2,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{1:[3]},{5:[1,18],9:$Vb,10:$Vc,11:$Vd,14:$Ve,15:$Vf,16:$Vg,17:$Vh,18:$Vi,19:$Vj,20:$Vk},o($Vl,[2,2],{32:[1,29]}),o($Vl,[2,3],{34:[1,30]}),o($Vl,[2,4]),{2:11,4:31,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:32,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:33,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{12:[1,34]},o($Vl,[2,23]),o($Vl,[2,24],{2:35,35:$Va}),o($Vm,[2,42]),o($Vn,[2,44],{32:[1,36]}),o($Vl,[2,26],{27:[1,37]}),o($Vl,[2,27],{27:[1,38]}),o($Vl,[2,28],{27:[1,39]}),o([5,9,10,11,13,14,15,16,17,18,19,20,29,30,35],[2,47]),{1:[2,1]},{2:11,4:40,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:41,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:42,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:45,6:3,7:4,8:$V0,10:[1,43],11:$V1,12:$V2,15:[1,44],17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:47,6:3,7:4,8:$V0,10:[1,46],11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:48,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:49,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:50,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:51,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:52,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{31:[1,53]},o($Vn,[2,46]),{9:$Vb,10:$Vc,11:$Vd,13:[1,54],14:$Ve,15:$Vf,16:$Vg,17:$Vh,18:$Vi,19:$Vj,20:$Vk},o($Vo,[2,19],{9:$Vb,18:$Vi,19:$Vj,20:$Vk}),o($Vo,[2,20],{9:$Vb,18:$Vi,19:$Vj,20:$Vk}),{2:11,4:57,6:3,7:4,8:$V0,11:$V1,12:$V2,13:[1,55],17:$V3,21:$V4,22:56,23:10,24:$V5,25:$V6,26:$V7,28:[1,58],31:$V8,33:$V9,35:$Va},o($Vl,[2,25]),{33:[1,59]},{24:[1,60],25:[1,61],26:[1,62]},{24:[1,63],25:[1,64],26:[1,65]},{24:[1,66],25:[1,67],26:[1,68]},o($Vl,[2,5]),o([5,10,13,29,30],[2,6],{9:$Vb,11:$Vd,14:$Ve,15:$Vf,16:$Vg,17:$Vh,18:$Vi,19:$Vj,20:$Vk}),o($Vo,[2,7],{9:$Vb,18:$Vi,19:$Vj,20:$Vk}),{2:11,4:69,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:70,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},o($Vp,[2,14],{9:$Vb,11:$Vd,17:$Vh,18:$Vi,19:$Vj,20:$Vk}),{2:11,4:71,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},o($Vp,[2,13],{9:$Vb,11:$Vd,17:$Vh,18:$Vi,19:$Vj,20:$Vk}),o([5,10,13,16,29,30],[2,12],{9:$Vb,11:$Vd,14:$Ve,15:$Vf,17:$Vh,18:$Vi,19:$Vj,20:$Vk}),o($Vo,[2,15],{9:$Vb,18:$Vi,19:$Vj,20:$Vk}),o($Vq,[2,16],{9:$Vb,20:$Vk}),o($Vq,[2,17],{9:$Vb,20:$Vk}),o([5,10,11,13,14,15,16,17,18,19,20,29,30],[2,18],{9:$Vb}),o($Vm,[2,43]),o($Vl,[2,8]),o($Vl,[2,21]),{13:[1,72],29:[1,73],30:[1,74]},o($Vr,[2,38],{9:$Vb,10:$Vc,11:$Vd,14:$Ve,15:$Vf,16:$Vg,17:$Vh,18:$Vi,19:$Vj,20:$Vk}),o($Vr,[2,39]),o($Vn,[2,45]),o($Vl,[2,29]),o($Vl,[2,30]),o($Vl,[2,31]),o($Vl,[2,32]),o($Vl,[2,33]),o($Vl,[2,34]),o($Vl,[2,35]),o($Vl,[2,36]),o($Vl,[2,37]),o($Vp,[2,9],{9:$Vb,11:$Vd,17:$Vh,18:$Vi,19:$Vj,20:$Vk}),o($Vp,[2,11],{9:$Vb,11:$Vd,17:$Vh,18:$Vi,19:$Vj,20:$Vk}),o($Vp,[2,10],{9:$Vb,11:$Vd,17:$Vh,18:$Vi,19:$Vj,20:$Vk}),o($Vl,[2,22]),{2:11,4:75,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},{2:11,4:76,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,23:10,24:$V5,25:$V6,26:$V7,31:$V8,33:$V9,35:$Va},o($Vr,[2,40],{9:$Vb,10:$Vc,11:$Vd,14:$Ve,15:$Vf,16:$Vg,17:$Vh,18:$Vi,19:$Vj,20:$Vk}),o($Vr,[2,41],{9:$Vb,10:$Vc,11:$Vd,14:$Ve,15:$Vf,16:$Vg,17:$Vh,18:$Vi,19:$Vj,20:$Vk})],
-defaultActions: {18:[2,1]},
+table: [{2:10,3:1,4:2,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{1:[3]},{5:[1,14],9:$V8,10:$V9,11:$Va,14:$Vb,15:$Vc,16:$Vd,17:$Ve,18:$Vf,19:$Vg,20:$Vh},o($Vi,[2,2],{27:[1,25]}),o($Vi,[2,3],{29:[1,26]}),o($Vi,[2,4]),{2:10,4:27,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:28,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:29,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{12:[1,30]},o($Vi,[2,23],{2:31,30:$V7}),o($Vj,[2,29]),o($Vk,[2,31],{27:[1,32]}),o([5,9,10,11,13,14,15,16,17,18,19,20,24,25,30],[2,34]),{1:[2,1]},{2:10,4:33,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:34,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:35,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:38,6:3,7:4,8:$V0,10:[1,36],11:$V1,12:$V2,15:[1,37],17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:40,6:3,7:4,8:$V0,10:[1,39],11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:41,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:42,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:43,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:44,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:45,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{26:[1,46]},o($Vk,[2,33]),{9:$V8,10:$V9,11:$Va,13:[1,47],14:$Vb,15:$Vc,16:$Vd,17:$Ve,18:$Vf,19:$Vg,20:$Vh},o($Vl,[2,19],{9:$V8,18:$Vf,19:$Vg,20:$Vh}),o($Vl,[2,20],{9:$V8,18:$Vf,19:$Vg,20:$Vh}),{2:10,4:50,6:3,7:4,8:$V0,11:$V1,12:$V2,13:[1,48],17:$V3,21:$V4,22:49,23:[1,51],26:$V5,28:$V6,30:$V7},o($Vi,[2,24]),{28:[1,52]},o($Vi,[2,5]),o([5,10,13,24,25],[2,6],{9:$V8,11:$Va,14:$Vb,15:$Vc,16:$Vd,17:$Ve,18:$Vf,19:$Vg,20:$Vh}),o($Vl,[2,7],{9:$V8,18:$Vf,19:$Vg,20:$Vh}),{2:10,4:53,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:54,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},o($Vm,[2,14],{9:$V8,11:$Va,17:$Ve,18:$Vf,19:$Vg,20:$Vh}),{2:10,4:55,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},o($Vm,[2,13],{9:$V8,11:$Va,17:$Ve,18:$Vf,19:$Vg,20:$Vh}),o([5,10,13,16,24,25],[2,12],{9:$V8,11:$Va,14:$Vb,15:$Vc,17:$Ve,18:$Vf,19:$Vg,20:$Vh}),o($Vl,[2,15],{9:$V8,18:$Vf,19:$Vg,20:$Vh}),o($Vn,[2,16],{9:$V8,20:$Vh}),o($Vn,[2,17],{9:$V8,20:$Vh}),o([5,10,11,13,14,15,16,17,18,19,20,24,25],[2,18],{9:$V8}),o($Vj,[2,30]),o($Vi,[2,8]),o($Vi,[2,21]),{13:[1,56],24:[1,57],25:[1,58]},o($Vo,[2,25],{9:$V8,10:$V9,11:$Va,14:$Vb,15:$Vc,16:$Vd,17:$Ve,18:$Vf,19:$Vg,20:$Vh}),o($Vo,[2,26]),o($Vk,[2,32]),o($Vm,[2,9],{9:$V8,11:$Va,17:$Ve,18:$Vf,19:$Vg,20:$Vh}),o($Vm,[2,11],{9:$V8,11:$Va,17:$Ve,18:$Vf,19:$Vg,20:$Vh}),o($Vm,[2,10],{9:$V8,11:$Va,17:$Ve,18:$Vf,19:$Vg,20:$Vh}),o($Vi,[2,22]),{2:10,4:59,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},{2:10,4:60,6:3,7:4,8:$V0,11:$V1,12:$V2,17:$V3,21:$V4,26:$V5,28:$V6,30:$V7},o($Vo,[2,27],{9:$V8,10:$V9,11:$Va,14:$Vb,15:$Vc,16:$Vd,17:$Ve,18:$Vf,19:$Vg,20:$Vh}),o($Vo,[2,28],{9:$V8,10:$V9,11:$Va,14:$Vb,15:$Vc,16:$Vd,17:$Ve,18:$Vf,19:$Vg,20:$Vh})],
+defaultActions: {14:[2,1]},
 parseError: function parseError(str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -32282,6 +32043,7 @@ parse: function parse(input) {
         lstack.length = lstack.length - n;
     }
 
+_token_stack:
     var lex = function () {
         var token;
         token = lexer.lex() || EOF;
@@ -32308,6 +32070,7 @@ parse: function parse(input) {
             action = table[state] && table[state][symbol];
         }
 
+_handle_error:
         // handle parse error
         if (typeof action === 'undefined' || !action.length || !action[0]) {
             var error_rule_depth;
@@ -32805,76 +32568,68 @@ case 2:return 8;
 break;
 case 3:return 21;
 break;
-case 4:return 35;
+case 4:return 30;
 break;
-case 5:return 24;
+case 5:return 21;
 break;
 case 6:return 26;
 break;
 case 7:return 26;
 break;
-case 8:return 25;
+case 8:return 28;
 break;
-case 9:return 21;
+case 9:return 23;
 break;
-case 10:return 31;
+case 10:return 9;
 break;
-case 11:return 31;
+case 11:return ' ';
 break;
-case 12:return 33;
+case 12:return 27;
 break;
-case 13:return 28;
+case 13:return ':';
 break;
-case 14:return 9;
+case 14:return 24;
 break;
-case 15:return ' ';
+case 15:return 25;
 break;
-case 16:return 32;
+case 16:return 18;
 break;
-case 17:return 27;
+case 17:return 19;
 break;
-case 18:return 29;
+case 18:return 17;
 break;
-case 19:return 30;
+case 19:return 11;
 break;
-case 20:return 18;
+case 20:return 20;
 break;
-case 21:return 19;
+case 21:return 12;
 break;
-case 22:return 17;
+case 22:return 13;
 break;
-case 23:return 11;
+case 23:return 15;
 break;
-case 24:return 20;
+case 24:return 14;
 break;
-case 25:return 12;
+case 25:return 16;
 break;
-case 26:return 13;
+case 26:return '"';
 break;
-case 27:return 15;
+case 27:return "'";
 break;
-case 28:return 14;
+case 28:return "!";
 break;
-case 29:return 16;
+case 29:return 10;
 break;
-case 30:return '"';
+case 30:return 29;
 break;
-case 31:return "'";
+case 31:return '#';
 break;
-case 32:return "!";
-break;
-case 33:return 10;
-break;
-case 34:return 34;
-break;
-case 35:return '#';
-break;
-case 36:return 5;
+case 32:return 5;
 break;
 }
 },
-rules: [/^(?:\s+)/,/^(?:"(\\["]|[^"])*")/,/^(?:'(\\[']|[^'])*')/,/^(?:[A-Za-z]{1,}[A-Za-z_0-9\.]+(?=[(]))/,/^(?:#[A-Z0-9\/]+(!|\?)?)/,/^(?:\$[A-Za-z]+\$[0-9]+)/,/^(?:\$[A-Za-z]+[0-9]+)/,/^(?:[A-Za-z]+\$[0-9]+)/,/^(?:[A-Za-z]+[0-9]+)/,/^(?:[A-Za-z\.]+(?=[(]))/,/^(?:[A-Za-z]{1,}[A-Za-z_0-9]+)/,/^(?:[A-Za-z_]+)/,/^(?:[0-9]+)/,/^(?:\[(.*)?\])/,/^(?:&)/,/^(?: )/,/^(?:[.])/,/^(?::)/,/^(?:;)/,/^(?:,)/,/^(?:\*)/,/^(?:\/)/,/^(?:-)/,/^(?:\+)/,/^(?:\^)/,/^(?:\()/,/^(?:\))/,/^(?:>)/,/^(?:<)/,/^(?:NOT\b)/,/^(?:")/,/^(?:')/,/^(?:!)/,/^(?:=)/,/^(?:%)/,/^(?:[#])/,/^(?:$)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36],"inclusive":true}}
+rules: [/^(?:\s+)/,/^(?:"(\\["]|[^"])*")/,/^(?:'(\\[']|[^'])*')/,/^(?:[A-Za-z]{1,}[A-Za-z_0-9\.]+(?=[(]))/,/^(?:#[A-Z0-9\/]+(!|\?)?)/,/^(?:[A-Za-z\.]+(?=[(]))/,/^(?:[A-Za-z]{1,}[A-Za-z_0-9]+)/,/^(?:[A-Za-z_]+)/,/^(?:[0-9]+)/,/^(?:\[(.*)?\])/,/^(?:&)/,/^(?: )/,/^(?:[.])/,/^(?::)/,/^(?:;)/,/^(?:,)/,/^(?:\*)/,/^(?:\/)/,/^(?:-)/,/^(?:\+)/,/^(?:\^)/,/^(?:\()/,/^(?:\))/,/^(?:>)/,/^(?:<)/,/^(?:NOT\b)/,/^(?:")/,/^(?:')/,/^(?:!)/,/^(?:=)/,/^(?:%)/,/^(?:[#])/,/^(?:$)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32],"inclusive":true}}
 });
 return lexer;
 })();
@@ -32899,7 +32654,7 @@ if (typeof module !== 'undefined' && __webpack_require__.c[__webpack_require__.s
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)(module), __webpack_require__(11)))
 
 /***/ }),
-/* 167 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

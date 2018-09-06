@@ -50,16 +50,6 @@ describe('.parse() math-trig formulas', () => {
     expect(parser.parse('ADD(3, -5)')).toMatchObject({error: null, result: -2});
   });
 
-  it('AGGREGATE', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      done([[1, 2, 3]]);
-    });
-
-    expect(parser.parse('AGGREGATE(1, 4, A1:C1)')).toMatchObject({error: null, result: 2});
-    expect(parser.parse('AGGREGATE(6, 4, A1:C1)')).toMatchObject({error: null, result: 6});
-    expect(parser.parse('AGGREGATE(10, 4, A1:C1, 2)')).toMatchObject({error: null, result: 1});
-  });
-
   it('ARABIC', () => {
     expect(parser.parse('ARABIC()')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('ARABIC("ABC")')).toMatchObject({error: '#VALUE!', result: null});
@@ -562,14 +552,6 @@ describe('.parse() math-trig formulas', () => {
     expect(parser.parse('SQRTPI(64)')).toBeMatchCloseTo({error: null, result: 14.179630807244127});
   });
 
-  it('SUBTOTAL', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      done([[120, 10, 150, 23]]);
-    });
-
-    expect(parser.parse('SUBTOTAL(9, A1:C1)')).toMatchObject({error: null, result: 303});
-  });
-
   it('SUM', () => {
     expect(parser.parse('SUM()')).toMatchObject({error: null, result: 0});
     expect(parser.parse('SUM("value")')).toMatchObject({error: null, result: 0});
@@ -577,75 +559,11 @@ describe('.parse() math-trig formulas', () => {
     expect(parser.parse('SUM(64, 3.3, 0.1)')).toBeMatchCloseTo({error: null, result: 67.4});
   });
 
-  it('SUMIF', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      done([[1, 2, 3]]);
-    });
-
-    expect(parser.parse('SUMIF(A1:C1, ">2")')).toMatchObject({error: null, result: 3});
-  });
-
-  it('SUMIFS', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      done([[1, 2, 3]]);
-    });
-
-    expect(parser.parse('SUMIFS(A1:C1, ">1", "<3")')).toMatchObject({error: null, result: 2});
-  });
-
-  it('SUMPRODUCT', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'B3') {
-        done([[3, 4], [8, 6], [1, 9]]);
-      } else if (a.label === 'A4' && b.label === 'B6') {
-        done([[2, 7], [6, 7], [5, 3]]);
-      }
-    });
-
-    expect(parser.parse('SUMPRODUCT(A1:B3, A4:B6)')).toMatchObject({error: null, result: 156});
-  });
-
   it('SUMSQ', () => {
     expect(parser.parse('SUMSQ()')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('SUMSQ("value")')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('SUMSQ(64)')).toMatchObject({error: null, result: 4096});
     expect(parser.parse('SUMSQ(64, 3.3, 0.1)')).toBeMatchCloseTo({error: null, result: 4106.9});
-  });
-
-  it('SUMX2MY2', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'B3') {
-        done([[1, 2, 3]]);
-      } else if (a.label === 'A4' && b.label === 'B6') {
-        done([[4, 5, 6]]);
-      }
-    });
-
-    expect(parser.parse('SUMX2MY2(A1:B3, A4:B6)')).toMatchObject({error: null, result: -63});
-  });
-
-  it('SUMX2PY2', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'B3') {
-        done([[1, 2, 3]]);
-      } else if (a.label === 'A4' && b.label === 'B6') {
-        done([[4, 5, 6]]);
-      }
-    });
-
-    expect(parser.parse('SUMX2PY2(A1:B3, A4:B6)')).toMatchObject({error: null, result: 91});
-  });
-
-  it('SUMXMY2', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'B3') {
-        done([[1, 2, 3]]);
-      } else if (a.label === 'A4' && b.label === 'B6') {
-        done([[4, 5, 6]]);
-      }
-    });
-
-    expect(parser.parse('SUMXMY2(A1:B3, A4:B6)')).toMatchObject({error: null, result: 27});
   });
 
   it('TAN', () => {
