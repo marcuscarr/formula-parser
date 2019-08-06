@@ -1,9 +1,11 @@
 node_modules
-coverage
 *.tgz
 *.log
 .idea
 tmp/
+lib
+es
+dist
 coverage
 
 dev.html
