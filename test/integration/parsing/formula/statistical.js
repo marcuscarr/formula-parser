@@ -32,32 +32,6 @@ describe('.parse() statistical formulas', () => {
     expect(parser.parse('AVERAGEA(1.1, TRUE, 2, NULL, 5, 10)')).toBeMatchCloseTo({error: null, result: 3.82});
   });
 
-  it('AVERAGEIF', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'B3') {
-        done([[2, 4], [8, 16]]);
-      } else if (a.label === 'A4' && b.label === 'B6') {
-        done([[1, 2], [3, 4]]);
-      }
-    });
-
-    expect(parser.parse('AVERAGEIF(A1:B3, ">5", A4:B6)')).toMatchObject({error: null, result: 3.5});
-  });
-
-  it('AVERAGEIFS', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'D1') {
-        done([2, 4, 8, 16]);
-      } else if (a.label === 'A2' && b.label === 'D2') {
-        done([1, 2, 3, 4]);
-      } else if (a.label === 'A3' && b.label === 'D3') {
-        done([1, 2, 3, 4]);
-      }
-    });
-
-    expect(parser.parse('AVERAGEIFS(A1:D1, A2:D2, ">2", A3:D3, ">2")')).toMatchObject({error: null, result: 12});
-  });
-
   it('BETADIST', () => {
     expect(parser.parse('BETADIST()')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('BETADIST(2)')).toMatchObject({error: '#VALUE!', result: null});
@@ -124,30 +98,6 @@ describe('.parse() statistical formulas', () => {
     expect(parser.parse('CHISQ.INV.RT(0.4, 6)')).toBeMatchCloseTo({error: null, result: 6.2107571945266935});
   });
 
-  it('COLUMN', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'C2') {
-        done([[1, 2], [2, 3], [2, 4]]);
-      }
-    });
-
-    expect(parser.parse('COLUMN()')).toMatchObject({error: '#N/A', result: null});
-    expect(parser.parse('COLUMN(A1:C2)')).toMatchObject({error: '#N/A', result: null});
-    expect(parser.parse('COLUMN(A1:C2, 0)')).toMatchObject({error: null, result: [[1], [2], [2]]});
-    expect(parser.parse('COLUMN(A1:C2, 1)')).toMatchObject({error: null, result: [[2], [3], [4]]});
-  });
-
-  it('COLUMNS', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'C2') {
-        done([[1, 2], [2, 3], [2, 4]]);
-      }
-    });
-
-    expect(parser.parse('COLUMNS()')).toMatchObject({error: '#N/A', result: null});
-    expect(parser.parse('COLUMNS(A1:C2)')).toMatchObject({error: null, result: 2});
-  });
-
   it('CONFIDENCE', () => {
     expect(parser.parse('CONFIDENCE()')).toMatchObject({error: '#VALUE!', result: null});
     expect(parser.parse('CONFIDENCE(0.5)')).toMatchObject({error: '#VALUE!', result: null});
@@ -191,26 +141,14 @@ describe('.parse() statistical formulas', () => {
 
   it('COUNTIF', () => {
     parser.setVariable('foo', [1, null, 3, 'a', '']);
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'C2') {
-        done([[1, null, 3], ['a', 4, 'c']]);
-      }
-    });
 
     expect(parser.parse('COUNTIF(foo, ">1")')).toMatchObject({error: null, result: 1});
-    expect(parser.parse('COUNTIF(A1:C2, ">1")')).toMatchObject({error: null, result: 2});
   });
 
   it('COUNTIFS', () => {
     parser.setVariable('foo', [1, null, 3, 'a', '']);
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'C2') {
-        done([[1, null, 3], ['a', 4, 'c']]);
-      }
-    });
 
     expect(parser.parse('COUNTIFS(foo, ">1")')).toMatchObject({error: null, result: 1});
-    expect(parser.parse('COUNTIFS(A1:C2, ">1")')).toMatchObject({error: null, result: 2});
   });
 
   it('COUNTIN', () => {
@@ -647,31 +585,6 @@ describe('.parse() statistical formulas', () => {
     expect(parser.parse('RANKEQ("dwe", foo, TRUE)')).toMatchObject({error: '#VALUE!', result: null});
   });
 
-  it('ROW', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'C2') {
-        done([[1, 2], [2, 3], [2, 4]]);
-      }
-    });
-
-    expect(parser.parse('ROW()')).toMatchObject({error: '#N/A', result: null});
-    expect(parser.parse('ROW(A1:C2)')).toMatchObject({error: '#N/A', result: null});
-    expect(parser.parse('ROW(A1:C2, -1)')).toMatchObject({error: '#NUM!', result: null});
-    expect(parser.parse('ROW(A1:C2, 0)')).toMatchObject({error: null, result: [1, 2]});
-    expect(parser.parse('ROW(A1:C2, 2)')).toMatchObject({error: null, result: [2, 4]});
-  });
-
-  it('ROWS', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'C2') {
-        done([[1, 2], [2, 3], [2, 4]]);
-      }
-    });
-
-    expect(parser.parse('ROWS()')).toMatchObject({error: '#N/A', result: null});
-    expect(parser.parse('ROWS(A1:C2)')).toMatchObject({error: null, result: 3});
-  });
-
   it('RSQ', () => {
     parser.setVariable('foo', [2, 3, 9, 1, 8, 7, 5]);
     parser.setVariable('bar', [6, 5, 11, 7, 5, 4, 4]);
@@ -756,20 +669,6 @@ describe('.parse() statistical formulas', () => {
 
     expect(parser.parse('STEYX(foo, bar)')).toBeMatchCloseTo({error: null, result: 3.305718950210041});
     expect(parser.parse('STEYX(baz, bar)')).toMatchObject({error: '#VALUE!', result: null});
-  });
-
-  it('TRANSPOSE', () => {
-    parser.on('callRangeValue', (a, b, done) => {
-      if (a.label === 'A1' && b.label === 'C2') {
-        done([[1, 2], [3, 4], [5, 6]]);
-      } else if (a.label === 'A3' && b.label === 'C3') {
-        done([1, 2, 3]);
-      }
-    });
-
-    expect(parser.parse('TRANSPOSE()')).toMatchObject({error: '#N/A', result: null});
-    expect(parser.parse('TRANSPOSE(A1:C2)')).toMatchObject({error: null, result: [[1, 3, 5], [2, 4, 6]]});
-    expect(parser.parse('TRANSPOSE(A3:C3)')).toMatchObject({error: null, result: [[1], [2], [3]]});
   });
 
   it('TDIST', () => {

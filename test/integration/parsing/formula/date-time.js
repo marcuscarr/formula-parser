@@ -133,6 +133,13 @@ describe('.parse() date & time formulas', () => {
 
     expect(error).toBeNull();
     expect(result.getDate()).toBe(now.getDate());
+
+    const excelNow = ((now.getTime() / 1000) / 86400) + 25569;
+    expect(parser.parse('TODAY() - 7').error).toBeNull();
+    expect(parseInt(parser.parse('TODAY() - 7').result, 10)).toBe(parseInt(excelNow - 7, 10));
+
+    const testDate = new Date('2014-03-15T22:03Z');
+    parser.setVariable('testDate', testDate);
   });
 
   it('WEEKDAY', () => {

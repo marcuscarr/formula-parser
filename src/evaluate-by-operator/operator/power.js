@@ -7,7 +7,7 @@ export default function func(exp1, exp2) {
   const result = Math.pow(toNumber(exp1), toNumber(exp2));
 
   if (isNaN(result)) {
-    throw Error(ERROR_VALUE);
+    return Error(ERROR_VALUE);
   }
 
   return result;
