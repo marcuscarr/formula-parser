@@ -10,30 +10,6 @@ describe('.parse() engineering formulas', () => {
     parser = null;
   });
 
-  it('BESSELI', () => {
-    expect(parser.parse('BESSELI()')).toMatchObject({error: '#VALUE!', result: null});
-    expect(parser.parse('BESSELI(1.4)')).toMatchObject({error: '#VALUE!', result: null});
-    expect(parser.parse('BESSELI(1.4, 1)')).toBeMatchCloseTo({error: null, result: 0.8860919793963105});
-  });
-
-  it('BESSELJ', () => {
-    expect(parser.parse('BESSELJ()')).toMatchObject({error: '#VALUE!', result: null});
-    expect(parser.parse('BESSELJ(1.4)')).toMatchObject({error: '#VALUE!', result: null});
-    expect(parser.parse('BESSELJ(1.4, 1)')).toBeMatchCloseTo({error: null, result: 0.5419477138848564});
-  });
-
-  it('BESSELK', () => {
-    expect(parser.parse('BESSELK()')).toMatchObject({error: '#VALUE!', result: null});
-    expect(parser.parse('BESSELK(1.4)')).toMatchObject({error: '#VALUE!', result: null});
-    expect(parser.parse('BESSELK(1.4, 1)')).toMatchObject({error: null, result: 0.32083590550458985});
-  });
-
-  it('BESSELY', () => {
-    expect(parser.parse('BESSELY()')).toMatchObject({error: '#VALUE!', result: null});
-    expect(parser.parse('BESSELY(1.4)')).toMatchObject({error: '#VALUE!', result: null});
-    expect(parser.parse('BESSELY(1.4, 1)')).toMatchObject({error: null, result: -0.47914697411134044});
-  });
-
   it('BIN2DEC', () => {
     expect(parser.parse('BIN2DEC()')).toMatchObject({error: '#NUM!', result: null});
     expect(parser.parse('BIN2DEC(1010)')).toMatchObject({error: null, result: 10});

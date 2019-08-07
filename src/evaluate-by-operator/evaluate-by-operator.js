@@ -32,6 +32,10 @@ export default function evaluateByOperator(operator, params = [], emitter) {
 
   let value;
   try {
+    const error = params.find((p) => p instanceof Error);
+    if (error) {
+      throw error;
+    }
     value = availableOperators[operator](...params);
     if (emitter) {
       emitter.emit('callFunction', operator, params, (newValue) => {
