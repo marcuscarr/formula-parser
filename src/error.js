@@ -27,7 +27,7 @@ const errors = {
 export default function error(type) {
   let result;
 
-  type = (type + '').replace(/#|!|\?/g, '');
+  type = (String(type)).replace(/#|!|\?/g, '');
 
   if (errors[type]) {
     result = errors[type];
@@ -45,7 +45,7 @@ export default function error(type) {
 export function isValidStrict(type) {
   let valid = false;
 
-  for (const i in errors) {
+  for (const i in errors) { // eslint-disable-line no-restricted-syntax
     if (Object.prototype.hasOwnProperty.call(errors, i) && errors[i] === type) {
       valid = true;
       break;

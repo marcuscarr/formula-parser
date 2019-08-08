@@ -1,6 +1,6 @@
 {
-  "name": "hot-formula-parser",
-  "version": "2.3.4",
+  "name": "@riffyn/hot-formula-parser",
+  "version": "2.4.1",
   "description": "Formula parser",
   "browser": "dist/formula-parser.js",
   "main": "lib/index.js",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/handsontable/formula-parser.git"
+    "url": "git+https://github.com/RiffynInc/formula-parser.git"
   },
   "keywords": [
     "formula",
@@ -34,12 +34,12 @@
     "excel",
     "spreadsheet"
   ],
-  "author": "Handsoncode <hello@handsontable.com>",
+  "author": "Riffyn <hello@riffyn.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/handsontable/formula-parser/issues"
+    "url": "https://github.com/RiffynInc/formula-parser/issues"
   },
-  "homepage": "https://github.com/handsontable/formula-parser",
+  "homepage": "https://github.com/RiffynInc/formula-parser",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
@@ -77,7 +77,6 @@
     "jest": "^20.0.4",
     "jest-cli": "^21.2.1",
     "jison": "^0.4.17",
-    "jscs": "^3.0.7",
     "null-loader": "^0.1.1",
     "rimraf": "^2.3.4",
     "webpack": "^3.2.0"
