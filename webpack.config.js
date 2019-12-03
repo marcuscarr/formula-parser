@@ -5,6 +5,7 @@ const path = require('path');
 
 const env = process.env.NODE_ENV
 const config = {
+  node: { fs: 'empty' },
   module: {
     rules: [
       {
