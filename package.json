@@ -82,7 +82,7 @@
     "webpack": "^3.2.0"
   },
   "dependencies": {
-    "@handsontable/formulajs": "https://github.com/RiffynInc/formula.js/archive/a7bcc5e50488b6fd8d0e1cec3cf7b2abdd769358.tar.gz",
+    "@handsontable/formulajs": "https://github.com/RiffynInc/formula.js/archive/73f3b8f443411de85482f4ae9f8615a8274c9052.tar.gz",
     "tiny-emitter": "^2.0.1"
   },
   "jest": {
