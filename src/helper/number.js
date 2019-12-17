@@ -29,5 +29,9 @@ export function toNumber(number) {
  * @returns {Number} Returns inverted number.
  */
 export function invertNumber(number) {
+  const num = toNumber(number);
+  if (num === 0) {
+    return 0;
+  }
   return -1 * toNumber(number);
 }

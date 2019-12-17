@@ -1,21 +1,43 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = evaluateByOperator;
+exports.registerOperation = registerOperation;
+
+var _add = _interopRequireDefault(require("./operator/add"));
+
+var _ampersand = _interopRequireDefault(require("./operator/ampersand"));
+
+var _divide = _interopRequireDefault(require("./operator/divide"));
+
+var _equal = _interopRequireDefault(require("./operator/equal"));
+
+var _formulaFunction = _interopRequireDefault(require("./operator/formula-function"));
+
+var _greaterThan = _interopRequireDefault(require("./operator/greater-than"));
+
+var _greaterThanOrEqual = _interopRequireDefault(require("./operator/greater-than-or-equal"));
+
+var _lessThan = _interopRequireDefault(require("./operator/less-than"));
+
+var _lessThanOrEqual = _interopRequireDefault(require("./operator/less-than-or-equal"));
+
+var _minus = _interopRequireDefault(require("./operator/minus"));
+
+var _multiply = _interopRequireDefault(require("./operator/multiply"));
+
+var _notEqual = _interopRequireDefault(require("./operator/not-equal"));
+
+var _power = _interopRequireDefault(require("./operator/power"));
+
+var _error = require("./../error");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 /* eslint-disable import/no-named-as-default-member */
-import add from './operator/add';
-import ampersand from './operator/ampersand';
-import divide from './operator/divide';
-import equal from './operator/equal';
-import formulaFunction from './operator/formula-function';
-import greaterThan from './operator/greater-than';
-import greaterThanOrEqual from './operator/greater-than-or-equal';
-import lessThan from './operator/less-than';
-import lessThanOrEqual from './operator/less-than-or-equal';
-import minus from './operator/minus';
-import multiply from './operator/multiply';
-import notEqual from './operator/not-equal';
-import power from './operator/power';
-import { ERROR_NAME } from './../error';
-
 var availableOperators = Object.create(null);
-
 /**
  * Evaluate values by operator id.git
  *
@@ -23,19 +45,21 @@ var availableOperators = Object.create(null);
  * @param {Array} [params=[]] Arguments to evaluate.
  * @returns {*}
  */
-export default function evaluateByOperator(operator) {
+
+function evaluateByOperator(operator) {
   var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
   var emitter = arguments[2];
-
   operator = operator.toUpperCase();
 
   if (!availableOperators[operator]) {
-    throw Error(ERROR_NAME);
+    throw Error(_error.ERROR_NAME);
   }
 
-  var value = void 0;
+  var value;
+
   try {
     value = availableOperators[operator].apply(availableOperators, params);
+
     if (emitter) {
       emitter.emit('callFunction', operator, params, function (newValue) {
         if (newValue !== void 0) {
@@ -50,6 +74,7 @@ export default function evaluateByOperator(operator) {
           value = newValue;
         }
       });
+
       if (value === void 0) {
         return e;
       }
@@ -57,19 +82,22 @@ export default function evaluateByOperator(operator) {
       return e;
     }
   }
+
   return value;
 }
-
 /**
  * Register operator.
  *
  * @param {String|Array} symbol Symbol to register.
  * @param {Function} func Logic to register for this symbol.
  */
-export function registerOperation(symbol, func) {
+
+
+function registerOperation(symbol, func) {
   if (!Array.isArray(symbol)) {
     symbol = [symbol.toUpperCase()];
   }
+
   symbol.forEach(function (s) {
     if (func.isFactory) {
       availableOperators[s] = func(s);
@@ -79,16 +107,16 @@ export function registerOperation(symbol, func) {
   });
 }
 
-registerOperation(add.SYMBOL, add);
-registerOperation(ampersand.SYMBOL, ampersand);
-registerOperation(divide.SYMBOL, divide);
-registerOperation(equal.SYMBOL, equal);
-registerOperation(power.SYMBOL, power);
-registerOperation(formulaFunction.SYMBOL, formulaFunction);
-registerOperation(greaterThan.SYMBOL, greaterThan);
-registerOperation(greaterThanOrEqual.SYMBOL, greaterThanOrEqual);
-registerOperation(lessThan.SYMBOL, lessThan);
-registerOperation(lessThanOrEqual.SYMBOL, lessThanOrEqual);
-registerOperation(multiply.SYMBOL, multiply);
-registerOperation(notEqual.SYMBOL, notEqual);
-registerOperation(minus.SYMBOL, minus);
+registerOperation(_add["default"].SYMBOL, _add["default"]);
+registerOperation(_ampersand["default"].SYMBOL, _ampersand["default"]);
+registerOperation(_divide["default"].SYMBOL, _divide["default"]);
+registerOperation(_equal["default"].SYMBOL, _equal["default"]);
+registerOperation(_power["default"].SYMBOL, _power["default"]);
+registerOperation(_formulaFunction["default"].SYMBOL, _formulaFunction["default"]);
+registerOperation(_greaterThan["default"].SYMBOL, _greaterThan["default"]);
+registerOperation(_greaterThanOrEqual["default"].SYMBOL, _greaterThanOrEqual["default"]);
+registerOperation(_lessThan["default"].SYMBOL, _lessThan["default"]);
+registerOperation(_lessThanOrEqual["default"].SYMBOL, _lessThanOrEqual["default"]);
+registerOperation(_multiply["default"].SYMBOL, _multiply["default"]);
+registerOperation(_notEqual["default"].SYMBOL, _notEqual["default"]);
+registerOperation(_minus["default"].SYMBOL, _minus["default"]);

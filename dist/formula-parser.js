@@ -4980,31 +4980,38 @@ exports.transpose = function(matrix) {
 
 
 exports.__esModule = true;
+exports["default"] = error;
+exports.isValidStrict = isValidStrict;
+exports.ERROR_VALUE = exports.ERROR_REF = exports.ERROR_NUM = exports.ERROR_NULL = exports.ERROR_NOT_AVAILABLE = exports.ERROR_NAME = exports.ERROR_DIV_ZERO = exports.ERROR = void 0;
 
 var _errors;
 
-exports['default'] = error;
-exports.isValidStrict = isValidStrict;
-var ERROR = exports.ERROR = 'ERROR';
-var ERROR_DIV_ZERO = exports.ERROR_DIV_ZERO = 'DIV/0';
-var ERROR_NAME = exports.ERROR_NAME = 'NAME';
-var ERROR_NOT_AVAILABLE = exports.ERROR_NOT_AVAILABLE = 'N/A';
-var ERROR_NULL = exports.ERROR_NULL = 'NULL';
-var ERROR_NUM = exports.ERROR_NUM = 'NUM';
-var ERROR_REF = exports.ERROR_REF = 'REF';
-var ERROR_VALUE = exports.ERROR_VALUE = 'VALUE';
-
+var ERROR = 'ERROR';
+exports.ERROR = ERROR;
+var ERROR_DIV_ZERO = 'DIV/0';
+exports.ERROR_DIV_ZERO = ERROR_DIV_ZERO;
+var ERROR_NAME = 'NAME';
+exports.ERROR_NAME = ERROR_NAME;
+var ERROR_NOT_AVAILABLE = 'N/A';
+exports.ERROR_NOT_AVAILABLE = ERROR_NOT_AVAILABLE;
+var ERROR_NULL = 'NULL';
+exports.ERROR_NULL = ERROR_NULL;
+var ERROR_NUM = 'NUM';
+exports.ERROR_NUM = ERROR_NUM;
+var ERROR_REF = 'REF';
+exports.ERROR_REF = ERROR_REF;
+var ERROR_VALUE = 'VALUE';
+exports.ERROR_VALUE = ERROR_VALUE;
 var errors = (_errors = {}, _errors[ERROR] = '#ERROR!', _errors[ERROR_DIV_ZERO] = '#DIV/0!', _errors[ERROR_NAME] = '#NAME?', _errors[ERROR_NOT_AVAILABLE] = '#N/A', _errors[ERROR_NULL] = '#NULL!', _errors[ERROR_NUM] = '#NUM!', _errors[ERROR_REF] = '#REF!', _errors[ERROR_VALUE] = '#VALUE!', _errors);
-
 /**
  * Return error type based on provided error id.
  *
  * @param {String} type Error type.
  * @returns {String|null} Returns error id.
  */
-function error(type) {
-  var result = void 0;
 
+function error(type) {
+  var result;
   type = (type + '').replace(/#|!|\?/g, '');
 
   if (errors[type]) {
@@ -5013,13 +5020,14 @@ function error(type) {
 
   return result ? result : null;
 }
-
 /**
  * Check if error type is strict valid with knows errors.
  *
  * @param {String} Error type.
  * @return {Boolean}
  */
+
+
 function isValidStrict(type) {
   var valid = false;
 
@@ -5043,6 +5051,7 @@ function isValidStrict(type) {
 exports.__esModule = true;
 exports.toNumber = toNumber;
 exports.invertNumber = invertNumber;
+
 /**
  * Convert value into number.
  *
@@ -5050,7 +5059,7 @@ exports.invertNumber = invertNumber;
  * @returns {*}
  */
 function toNumber(number) {
-  var result = void 0;
+  var result;
 
   if (typeof number === 'number') {
     result = number;
@@ -5065,14 +5074,21 @@ function toNumber(number) {
 
   return result;
 }
-
 /**
  * Invert provided number.
  *
  * @param {Number} number
  * @returns {Number} Returns inverted number.
  */
+
+
 function invertNumber(number) {
+  var num = toNumber(number);
+
+  if (num === 0) {
+    return 0;
+  }
+
   return -1 * toNumber(number);
 }
 
@@ -29424,9 +29440,10 @@ exports.OCT2HEX = function(number, places) {
 
 
 exports.__esModule = true;
+exports["default"] = void 0;
 var SUPPORTED_FORMULAS = ['ABS', 'ACCRINT', 'ACOS', 'ACOSH', 'ACOT', 'ACOTH', 'ADD', 'AND', 'ARABIC', 'ARGS2ARRAY', 'ASIN', 'ASINH', 'ATAN', 'ATAN2', 'ATANH', 'AVEDEV', 'AVERAGE', 'AVERAGEA', 'BASE', 'BESSELI', 'BESSELJ', 'BESSELK', 'BESSELY', 'BETA.DIST', 'BETA.INV', 'BETADIST', 'BETAINV', 'BIN2DEC', 'BIN2HEX', 'BIN2OCT', 'BINOM.DIST', 'BINOM.DIST.RANGE', 'BINOM.INV', 'BINOMDIST', 'BITAND', 'BITLSHIFT', 'BITOR', 'BITRSHIFT', 'BITXOR', 'CEILING', 'CEILINGMATH', 'CEILINGPRECISE', 'CHAR', 'CHISQ.DIST', 'CHISQ.DIST.RT', 'CHISQ.INV', 'CHISQ.INV.RT', 'CHOOSE', 'CHOOSE', 'CLEAN', 'CODE', 'COMBIN', 'COMBINA', 'COMPLEX', 'CONCAT', 'CONCATENATE', 'CONFIDENCE', 'CONFIDENCE.NORM', 'CONFIDENCE.T', 'CONVERT', 'CORREL', 'COS', 'COSH', 'COT', 'COTH', 'COUNT', 'COUNTA', 'COUNTBLANK', 'COUNTIF', 'COUNTIFS', 'COUNTIN', 'COUNTUNIQUE', 'COVARIANCE.P', 'COVARIANCE.S', 'CSC', 'CSCH', 'CUMIPMT', 'CUMPRINC', 'DATE', 'DATEVALUE', 'DAY', 'DAYS', 'DAYS360', 'DB', 'DDB', 'DEC2BIN', 'DEC2HEX', 'DEC2OCT', 'DECIMAL', 'DEGREES', 'DELTA', 'DEVSQ', 'DIVIDE', 'DOLLAR', 'DOLLARDE', 'DOLLARFR', 'E', 'EDATE', 'EFFECT', 'EOMONTH', 'EQ', 'ERF', 'ERFC', 'EVEN', 'EXACT', 'EXP', 'EXPON.DIST', 'EXPONDIST', 'F.DIST', 'F.DIST.RT', 'F.INV', 'F.INV.RT', 'FACT', 'FACTDOUBLE', 'FALSE', 'FDIST', 'FDISTRT', 'FIND', 'FINV', 'FINVRT', 'FISHER', 'FISHERINV', 'FIXED', 'FLOOR', 'FORECAST', 'FREQUENCY', 'FV', 'GAMMA', 'GAMMA.DIST', 'GAMMA.INV', 'GAMMADIST', 'GAMMAINV', 'GAMMALN', 'GAMMALN.PRECISE', 'GAUSS', 'GCD', 'GEOMEAN', 'GESTEP', 'GROWTH', 'GTE', 'HARMEAN', 'HEX2BIN', 'HEX2DEC', 'HEX2OCT', 'HOUR', 'HTML2TEXT', 'HYPGEOM.DIST', 'HYPGEOMDIST', 'IF', 'IMABS', 'IMAGINARY', 'IMARGUMENT', 'IMCONJUGATE', 'IMCOS', 'IMCOSH', 'IMCOT', 'IMCSC', 'IMCSCH', 'IMDIV', 'IMEXP', 'IMLN', 'IMLOG10', 'IMLOG2', 'IMPOWER', 'IMPRODUCT', 'IMREAL', 'IMSEC', 'IMSECH', 'IMSIN', 'IMSINH', 'IMSQRT', 'IMSUB', 'IMSUM', 'IMTAN', 'INT', 'INTERCEPT', 'INTERVAL', 'IPMT', 'ISBINARY', 'ISBLANK', 'ISEVEN', 'ISLOGICAL', 'ISNONTEXT', 'ISNUMBER', 'ISODD', 'ISODD', 'ISOWEEKNUM', 'ISPMT', 'ISTEXT', 'KURT', 'LARGE', 'LCM', 'LEFT', 'LEN', 'LINEST', 'LN', 'LOG', 'LOG10', 'LOGEST', 'LOGNORM.DIST', 'LOGNORM.INV', 'LOGNORMDIST', 'LOGNORMINV', 'LOWER', 'LT', 'LTE', 'MATCH', 'MAX', 'MAXA', 'MEDIAN', 'MID', 'MIN', 'MINA', 'MINUS', 'MINUTE', 'MOD', 'MODE.MULT', 'MODE.SNGL', 'MODEMULT', 'MODESNGL', 'MONTH', 'MROUND', 'MULTINOMIAL', 'MULTIPLY', 'NE', 'NEGBINOM.DIST', 'NEGBINOMDIST', 'NETWORKDAYS', 'NOMINAL', 'NORM.DIST', 'NORM.INV', 'NORM.S.DIST', 'NORM.S.INV', 'NORMDIST', 'NORMINV', 'NORMSDIST', 'NORMSINV', 'NOT', 'NOW', 'NPER', 'NPV', 'NUMBERS', 'NUMERAL', 'OCT2BIN', 'OCT2DEC', 'OCT2HEX', 'ODD', 'OR', 'PDURATION', 'PEARSON', 'PERCENTILEEXC', 'PERCENTILEINC', 'PERCENTRANKEXC', 'PERCENTRANKINC', 'PERMUT', 'PERMUTATIONA', 'PHI', 'PI', 'PMT', 'POISSON.DIST', 'POISSONDIST', 'POW', 'POWER', 'PPMT', 'PROB', 'PRODUCT', 'PROPER', 'PV', 'QUARTILE.EXC', 'QUARTILE.INC', 'QUARTILEEXC', 'QUARTILEINC', 'QUOTIENT', 'RADIANS', 'RAND', 'RANDBETWEEN', 'RANK.AVG', 'RANK.EQ', 'RANKAVG', 'RANKEQ', 'RATE', 'REGEXEXTRACT', 'REGEXMATCH', 'REGEXREPLACE', 'REPLACE', 'REPT', 'RIGHT', 'ROMAN', 'ROUND', 'ROUNDDOWN', 'ROUNDUP', 'RRI', 'RSQ', 'SEARCH', 'SEC', 'SECH', 'SECOND', 'SERIESSUM', 'SIGN', 'SIN', 'SINH', 'SKEW', 'SKEW.P', 'SKEWP', 'SLN', 'SLOPE', 'SMALL', 'SPLIT', 'SPLIT', 'SQRT', 'SQRTPI', 'STANDARDIZE', 'STDEV.P', 'STDEV.S', 'STDEVA', 'STDEVP', 'STDEVPA', 'STDEVS', 'STEYX', 'SUBSTITUTE', 'SUM', 'SUMSQ', 'SWITCH', 'SYD', 'T', 'T.DIST', 'T.DIST.2T', 'T.DIST.RT', 'T.INV', 'T.INV.2T', 'TAN', 'TANH', 'TBILLEQ', 'TBILLPRICE', 'TBILLYIELD', 'TDIST', 'TDIST2T', 'TDISTRT', 'TEXT', 'TIME', 'TIMEVALUE', 'TINV', 'TINV2T', 'TODAY', 'TREND', 'TRIM', 'TRIMMEAN', 'TRUE', 'TRUNC', 'UNICHAR', 'UNICODE', 'UNIQUE', 'UPPER', 'VALUE', 'VAR.P', 'VAR.S', 'VARA', 'VARP', 'VARPA', 'VARS', 'WEEKDAY', 'WEEKNUM', 'WEIBULL.DIST', 'WEIBULLDIST', 'WORKDAY', 'XOR', 'YEAR', 'YEARFRAC'];
-
-exports['default'] = SUPPORTED_FORMULAS;
+var _default = SUPPORTED_FORMULAS;
+exports["default"] = _default;
 
 /***/ }),
 /* 145 */
@@ -29435,24 +29452,21 @@ exports['default'] = SUPPORTED_FORMULAS;
 "use strict";
 
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 exports.__esModule = true;
-exports.error = exports.Parser = exports.ERROR_VALUE = exports.ERROR_REF = exports.ERROR_NUM = exports.ERROR_NULL = exports.ERROR_NOT_AVAILABLE = exports.ERROR_NAME = exports.ERROR_DIV_ZERO = exports.ERROR = exports.SUPPORTED_FORMULAS = undefined;
 
-var _parser = __webpack_require__(146);
+var _parser = _interopRequireDefault(__webpack_require__(146));
 
-var _parser2 = _interopRequireDefault(_parser);
+exports.Parser = _parser["default"];
 
-var _supportedFormulas = __webpack_require__(144);
+var _supportedFormulas = _interopRequireDefault(__webpack_require__(144));
 
-var _supportedFormulas2 = _interopRequireDefault(_supportedFormulas);
+exports.SUPPORTED_FORMULAS = _supportedFormulas["default"];
 
-var _error = __webpack_require__(3);
+var _error = _interopRequireWildcard(__webpack_require__(3));
 
-var _error2 = _interopRequireDefault(_error);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-exports.SUPPORTED_FORMULAS = _supportedFormulas2['default'];
+exports.error = _error["default"];
 exports.ERROR = _error.ERROR;
 exports.ERROR_DIV_ZERO = _error.ERROR_DIV_ZERO;
 exports.ERROR_NAME = _error.ERROR_NAME;
@@ -29461,8 +29475,12 @@ exports.ERROR_NULL = _error.ERROR_NULL;
 exports.ERROR_NUM = _error.ERROR_NUM;
 exports.ERROR_REF = _error.ERROR_REF;
 exports.ERROR_VALUE = _error.ERROR_VALUE;
-exports.Parser = _parser2['default'];
-exports.error = _error2['default'];
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /***/ }),
 /* 146 */
@@ -29471,15 +29489,14 @@ exports.error = _error2['default'];
 "use strict";
 
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 exports.__esModule = true;
+exports["default"] = void 0;
 
-var _tinyEmitter = __webpack_require__(147);
+var _tinyEmitter = _interopRequireDefault(__webpack_require__(147));
 
-var _tinyEmitter2 = _interopRequireDefault(_tinyEmitter);
-
-var _evaluateByOperator2 = __webpack_require__(148);
-
-var _evaluateByOperator3 = _interopRequireDefault(_evaluateByOperator2);
+var _evaluateByOperator2 = _interopRequireDefault(__webpack_require__(148));
 
 var _grammarParser = __webpack_require__(171);
 
@@ -29487,29 +29504,30 @@ var _string = __webpack_require__(174);
 
 var _number = __webpack_require__(4);
 
-var _error = __webpack_require__(3);
+var _error = _interopRequireWildcard(__webpack_require__(3));
 
-var _error2 = _interopRequireDefault(_error);
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 /**
  * @class Parser
  */
-var Parser = function (_Emitter) {
-  _inherits(Parser, _Emitter);
+var Parser =
+/*#__PURE__*/
+function (_Emitter) {
+  _inheritsLoose(Parser, _Emitter);
 
   function Parser() {
-    _classCallCheck(this, Parser);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, _Emitter.call(this));
-
+    _this = _Emitter.call(this) || this;
     _this.parser = new _grammarParser.Parser();
     _this.parser.yy = {
       toNumber: _number.toNumber,
@@ -29522,7 +29540,7 @@ var Parser = function (_Emitter) {
         return _this._callVariable(variable);
       },
       evaluateByOperator: function evaluateByOperator(operator, params) {
-        return (0, _evaluateByOperator3['default'])(operator, params, _this);
+        return (0, _evaluateByOperator2["default"])(operator, params, _assertThisInitialized(_this));
       },
       callFunction: function callFunction(name, params) {
         return _this._callFunction(name, params);
@@ -29532,9 +29550,9 @@ var Parser = function (_Emitter) {
     _this.functions = Object.create(null);
 
     _this.setVariable('TRUE', true).setVariable('FALSE', false).setVariable('NULL', null);
+
     return _this;
   }
-
   /**
    * Parse formula expression.
    *
@@ -29543,7 +29561,9 @@ var Parser = function (_Emitter) {
    */
 
 
-  Parser.prototype.parse = function parse(expression) {
+  var _proto = Parser.prototype;
+
+  _proto.parse = function parse(expression) {
     var result = null;
     var error = null;
 
@@ -29554,17 +29574,17 @@ var Parser = function (_Emitter) {
         result = this.parser.parse(expression);
       }
     } catch (ex) {
-      var message = (0, _error2['default'])(ex.message);
+      var message = (0, _error["default"])(ex.message);
 
       if (message) {
         error = message;
       } else {
-        error = (0, _error2['default'])(_error.ERROR);
+        error = (0, _error["default"])(_error.ERROR);
       }
     }
 
     if (result instanceof Error) {
-      error = (0, _error2['default'])(result.message) || (0, _error2['default'])(_error.ERROR);
+      error = (0, _error["default"])(result.message) || (0, _error["default"])(_error.ERROR);
       result = null;
     }
 
@@ -29572,8 +29592,7 @@ var Parser = function (_Emitter) {
       error: error,
       result: result
     };
-  };
-
+  }
   /**
    * Set predefined variable name which can be visible while parsing formula expression.
    *
@@ -29581,26 +29600,23 @@ var Parser = function (_Emitter) {
    * @param {*} value Variable value.
    * @returns {Parser}
    */
+  ;
 
-
-  Parser.prototype.setVariable = function setVariable(name, value) {
+  _proto.setVariable = function setVariable(name, value) {
     this.variables[name] = value;
-
     return this;
-  };
-
+  }
   /**
    * Get variable name.
    *
    * @param {String} name Variable name.
    * @returns {*}
    */
+  ;
 
-
-  Parser.prototype.getVariable = function getVariable(name) {
+  _proto.getVariable = function getVariable(name) {
     return this.variables[name];
-  };
-
+  }
   /**
    * Retrieve variable value by its name.
    *
@@ -29608,11 +29624,10 @@ var Parser = function (_Emitter) {
    * @returns {*}
    * @private
    */
+  ;
 
-
-  Parser.prototype._callVariable = function _callVariable(name) {
+  _proto._callVariable = function _callVariable(name) {
     var value = this.getVariable(name);
-
     this.emit('callVariable', name, function (newValue) {
       if (newValue !== void 0) {
         value = newValue;
@@ -29624,8 +29639,7 @@ var Parser = function (_Emitter) {
     }
 
     return value;
-  };
-
+  }
   /**
    * Set custom function which can be visible while parsing formula expression.
    *
@@ -29633,26 +29647,23 @@ var Parser = function (_Emitter) {
    * @param {Function} fn Custom function.
    * @returns {Parser}
    */
+  ;
 
-
-  Parser.prototype.setFunction = function setFunction(name, fn) {
+  _proto.setFunction = function setFunction(name, fn) {
     this.functions[name] = fn;
-
     return this;
-  };
-
+  }
   /**
    * Get custom function.
    *
    * @param {String} name Custom function name.
    * @returns {*}
    */
+  ;
 
-
-  Parser.prototype.getFunction = function getFunction(name) {
+  _proto.getFunction = function getFunction(name) {
     return this.functions[name];
-  };
-
+  }
   /**
    * Call function with provided params.
    *
@@ -29661,13 +29672,12 @@ var Parser = function (_Emitter) {
    * @returns {*}
    * @private
    */
+  ;
 
-
-  Parser.prototype._callFunction = function _callFunction(name) {
+  _proto._callFunction = function _callFunction(name) {
     var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-
     var fn = this.getFunction(name);
-    var value = void 0;
+    var value;
 
     if (fn) {
       value = fn(params);
@@ -29678,10 +29688,8 @@ var Parser = function (_Emitter) {
         value = newValue;
       }
     });
-
-    return value === void 0 ? (0, _evaluateByOperator3['default'])(name, params) : value;
-  };
-
+    return value === void 0 ? (0, _evaluateByOperator2["default"])(name, params) : value;
+  }
   /**
    * Try to throw error by its name.
    *
@@ -29689,9 +29697,9 @@ var Parser = function (_Emitter) {
    * @returns {String}
    * @private
    */
+  ;
 
-
-  Parser.prototype._throwError = function _throwError(errorName) {
+  _proto._throwError = function _throwError(errorName) {
     if ((0, _error.isValidStrict)(errorName)) {
       throw Error(errorName);
     }
@@ -29700,9 +29708,10 @@ var Parser = function (_Emitter) {
   };
 
   return Parser;
-}(_tinyEmitter2['default']);
+}(_tinyEmitter["default"]);
 
-exports['default'] = Parser;
+var _default = Parser;
+exports["default"] = _default;
 
 /***/ }),
 /* 147 */
@@ -29784,68 +29793,41 @@ module.exports = E;
 
 
 exports.__esModule = true;
-exports['default'] = evaluateByOperator;
+exports["default"] = evaluateByOperator;
 exports.registerOperation = registerOperation;
 
-var _add = __webpack_require__(149);
+var _add = _interopRequireDefault(__webpack_require__(149));
 
-var _add2 = _interopRequireDefault(_add);
+var _ampersand = _interopRequireDefault(__webpack_require__(150));
 
-var _ampersand = __webpack_require__(150);
+var _divide = _interopRequireDefault(__webpack_require__(151));
 
-var _ampersand2 = _interopRequireDefault(_ampersand);
+var _equal = _interopRequireDefault(__webpack_require__(152));
 
-var _divide = __webpack_require__(151);
+var _formulaFunction = _interopRequireDefault(__webpack_require__(153));
 
-var _divide2 = _interopRequireDefault(_divide);
+var _greaterThan = _interopRequireDefault(__webpack_require__(163));
 
-var _equal = __webpack_require__(152);
+var _greaterThanOrEqual = _interopRequireDefault(__webpack_require__(164));
 
-var _equal2 = _interopRequireDefault(_equal);
+var _lessThan = _interopRequireDefault(__webpack_require__(165));
 
-var _formulaFunction = __webpack_require__(153);
+var _lessThanOrEqual = _interopRequireDefault(__webpack_require__(166));
 
-var _formulaFunction2 = _interopRequireDefault(_formulaFunction);
+var _minus = _interopRequireDefault(__webpack_require__(167));
 
-var _greaterThan = __webpack_require__(163);
+var _multiply = _interopRequireDefault(__webpack_require__(168));
 
-var _greaterThan2 = _interopRequireDefault(_greaterThan);
+var _notEqual = _interopRequireDefault(__webpack_require__(169));
 
-var _greaterThanOrEqual = __webpack_require__(164);
-
-var _greaterThanOrEqual2 = _interopRequireDefault(_greaterThanOrEqual);
-
-var _lessThan = __webpack_require__(165);
-
-var _lessThan2 = _interopRequireDefault(_lessThan);
-
-var _lessThanOrEqual = __webpack_require__(166);
-
-var _lessThanOrEqual2 = _interopRequireDefault(_lessThanOrEqual);
-
-var _minus = __webpack_require__(167);
-
-var _minus2 = _interopRequireDefault(_minus);
-
-var _multiply = __webpack_require__(168);
-
-var _multiply2 = _interopRequireDefault(_multiply);
-
-var _notEqual = __webpack_require__(169);
-
-var _notEqual2 = _interopRequireDefault(_notEqual);
-
-var _power = __webpack_require__(170);
-
-var _power2 = _interopRequireDefault(_power);
+var _power = _interopRequireDefault(__webpack_require__(170));
 
 var _error = __webpack_require__(3);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /* eslint-disable import/no-named-as-default-member */
 var availableOperators = Object.create(null);
-
 /**
  * Evaluate values by operator id.git
  *
@@ -29853,19 +29835,21 @@ var availableOperators = Object.create(null);
  * @param {Array} [params=[]] Arguments to evaluate.
  * @returns {*}
  */
+
 function evaluateByOperator(operator) {
   var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
   var emitter = arguments[2];
-
   operator = operator.toUpperCase();
 
   if (!availableOperators[operator]) {
     throw Error(_error.ERROR_NAME);
   }
 
-  var value = void 0;
+  var value;
+
   try {
     value = availableOperators[operator].apply(availableOperators, params);
+
     if (emitter) {
       emitter.emit('callFunction', operator, params, function (newValue) {
         if (newValue !== void 0) {
@@ -29880,6 +29864,7 @@ function evaluateByOperator(operator) {
           value = newValue;
         }
       });
+
       if (value === void 0) {
         return e;
       }
@@ -29887,19 +29872,22 @@ function evaluateByOperator(operator) {
       return e;
     }
   }
+
   return value;
 }
-
 /**
  * Register operator.
  *
  * @param {String|Array} symbol Symbol to register.
  * @param {Function} func Logic to register for this symbol.
  */
+
+
 function registerOperation(symbol, func) {
   if (!Array.isArray(symbol)) {
     symbol = [symbol.toUpperCase()];
   }
+
   symbol.forEach(function (s) {
     if (func.isFactory) {
       availableOperators[s] = func(s);
@@ -29909,19 +29897,19 @@ function registerOperation(symbol, func) {
   });
 }
 
-registerOperation(_add2['default'].SYMBOL, _add2['default']);
-registerOperation(_ampersand2['default'].SYMBOL, _ampersand2['default']);
-registerOperation(_divide2['default'].SYMBOL, _divide2['default']);
-registerOperation(_equal2['default'].SYMBOL, _equal2['default']);
-registerOperation(_power2['default'].SYMBOL, _power2['default']);
-registerOperation(_formulaFunction2['default'].SYMBOL, _formulaFunction2['default']);
-registerOperation(_greaterThan2['default'].SYMBOL, _greaterThan2['default']);
-registerOperation(_greaterThanOrEqual2['default'].SYMBOL, _greaterThanOrEqual2['default']);
-registerOperation(_lessThan2['default'].SYMBOL, _lessThan2['default']);
-registerOperation(_lessThanOrEqual2['default'].SYMBOL, _lessThanOrEqual2['default']);
-registerOperation(_multiply2['default'].SYMBOL, _multiply2['default']);
-registerOperation(_notEqual2['default'].SYMBOL, _notEqual2['default']);
-registerOperation(_minus2['default'].SYMBOL, _minus2['default']);
+registerOperation(_add["default"].SYMBOL, _add["default"]);
+registerOperation(_ampersand["default"].SYMBOL, _ampersand["default"]);
+registerOperation(_divide["default"].SYMBOL, _divide["default"]);
+registerOperation(_equal["default"].SYMBOL, _equal["default"]);
+registerOperation(_power["default"].SYMBOL, _power["default"]);
+registerOperation(_formulaFunction["default"].SYMBOL, _formulaFunction["default"]);
+registerOperation(_greaterThan["default"].SYMBOL, _greaterThan["default"]);
+registerOperation(_greaterThanOrEqual["default"].SYMBOL, _greaterThanOrEqual["default"]);
+registerOperation(_lessThan["default"].SYMBOL, _lessThan["default"]);
+registerOperation(_lessThanOrEqual["default"].SYMBOL, _lessThanOrEqual["default"]);
+registerOperation(_multiply["default"].SYMBOL, _multiply["default"]);
+registerOperation(_notEqual["default"].SYMBOL, _notEqual["default"]);
+registerOperation(_minus["default"].SYMBOL, _minus["default"]);
 
 /***/ }),
 /* 149 */
@@ -29931,14 +29919,15 @@ registerOperation(_minus2['default'].SYMBOL, _minus2['default']);
 
 
 exports.__esModule = true;
-exports.SYMBOL = undefined;
-exports['default'] = func;
+exports["default"] = func;
+exports.SYMBOL = void 0;
 
 var _number = __webpack_require__(4);
 
 var _error = __webpack_require__(3);
 
-var SYMBOL = exports.SYMBOL = '+';
+var SYMBOL = '+';
+exports.SYMBOL = SYMBOL;
 
 function func(first) {
   for (var _len = arguments.length, rest = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -29966,8 +29955,10 @@ func.SYMBOL = SYMBOL;
 
 
 exports.__esModule = true;
-exports['default'] = func;
-var SYMBOL = exports.SYMBOL = '&';
+exports["default"] = func;
+exports.SYMBOL = void 0;
+var SYMBOL = '&';
+exports.SYMBOL = SYMBOL;
 
 function func() {
   for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
@@ -29989,14 +29980,15 @@ func.SYMBOL = SYMBOL;
 
 
 exports.__esModule = true;
-exports.SYMBOL = undefined;
-exports['default'] = func;
+exports["default"] = func;
+exports.SYMBOL = void 0;
 
 var _number = __webpack_require__(4);
 
 var _error = __webpack_require__(3);
 
-var SYMBOL = exports.SYMBOL = '/';
+var SYMBOL = '/';
+exports.SYMBOL = SYMBOL;
 
 function func(first) {
   for (var _len = arguments.length, rest = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -30010,6 +30002,7 @@ function func(first) {
   if (result === Infinity) {
     return Error(_error.ERROR_DIV_ZERO);
   }
+
   if (isNaN(result)) {
     return Error(_error.ERROR_VALUE);
   }
@@ -30027,8 +30020,10 @@ func.SYMBOL = SYMBOL;
 
 
 exports.__esModule = true;
-exports['default'] = func;
-var SYMBOL = exports.SYMBOL = '=';
+exports["default"] = func;
+exports.SYMBOL = void 0;
+var SYMBOL = '=';
+exports.SYMBOL = SYMBOL;
 
 function func(exp1, exp2) {
   return exp1 === exp2;
@@ -30043,33 +30038,33 @@ func.SYMBOL = SYMBOL;
 "use strict";
 
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 exports.__esModule = true;
-exports.SYMBOL = undefined;
-exports['default'] = func;
+exports["default"] = func;
+exports.SYMBOL = void 0;
 
-var _formulajs = __webpack_require__(154);
+var formulajs = _interopRequireWildcard(__webpack_require__(154));
 
-var formulajs = _interopRequireWildcard(_formulajs);
-
-var _supportedFormulas = __webpack_require__(144);
-
-var _supportedFormulas2 = _interopRequireDefault(_supportedFormulas);
+var _supportedFormulas = _interopRequireDefault(__webpack_require__(144));
 
 var _error = __webpack_require__(3);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
-var SYMBOL = exports.SYMBOL = _supportedFormulas2['default'];
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var SYMBOL = _supportedFormulas["default"];
+exports.SYMBOL = SYMBOL;
 
 function func(symbol) {
   return function __formulaFunction() {
     symbol = symbol.toUpperCase();
-
     var symbolParts = symbol.split('.');
     var foundFormula = false;
-    var result = void 0;
+    var result;
 
     if (symbolParts.length === 1) {
       if (formulajs[symbolParts[0]]) {
@@ -30090,6 +30085,7 @@ function func(symbol) {
           break;
         }
       }
+
       if (nestedFormula) {
         foundFormula = true;
         result = nestedFormula.apply(undefined, arguments);
@@ -32456,8 +32452,10 @@ exports.HLOOKUP = function (needle, table, index, rangeLookup) {
 
 
 exports.__esModule = true;
-exports['default'] = func;
-var SYMBOL = exports.SYMBOL = '>';
+exports["default"] = func;
+exports.SYMBOL = void 0;
+var SYMBOL = '>';
+exports.SYMBOL = SYMBOL;
 
 function func(exp1, exp2) {
   return exp1 > exp2;
@@ -32473,8 +32471,10 @@ func.SYMBOL = SYMBOL;
 
 
 exports.__esModule = true;
-exports['default'] = func;
-var SYMBOL = exports.SYMBOL = '>=';
+exports["default"] = func;
+exports.SYMBOL = void 0;
+var SYMBOL = '>=';
+exports.SYMBOL = SYMBOL;
 
 function func(exp1, exp2) {
   return exp1 >= exp2;
@@ -32490,8 +32490,10 @@ func.SYMBOL = SYMBOL;
 
 
 exports.__esModule = true;
-exports['default'] = func;
-var SYMBOL = exports.SYMBOL = '<';
+exports["default"] = func;
+exports.SYMBOL = void 0;
+var SYMBOL = '<';
+exports.SYMBOL = SYMBOL;
 
 function func(exp1, exp2) {
   return exp1 < exp2;
@@ -32507,8 +32509,10 @@ func.SYMBOL = SYMBOL;
 
 
 exports.__esModule = true;
-exports['default'] = func;
-var SYMBOL = exports.SYMBOL = '<=';
+exports["default"] = func;
+exports.SYMBOL = void 0;
+var SYMBOL = '<=';
+exports.SYMBOL = SYMBOL;
 
 function func(exp1, exp2) {
   return exp1 <= exp2;
@@ -32524,14 +32528,15 @@ func.SYMBOL = SYMBOL;
 
 
 exports.__esModule = true;
-exports.SYMBOL = undefined;
-exports['default'] = func;
+exports["default"] = func;
+exports.SYMBOL = void 0;
 
 var _number = __webpack_require__(4);
 
 var _error = __webpack_require__(3);
 
-var SYMBOL = exports.SYMBOL = '-';
+var SYMBOL = '-';
+exports.SYMBOL = SYMBOL;
 
 function func(first) {
   for (var _len = arguments.length, rest = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -32559,14 +32564,15 @@ func.SYMBOL = SYMBOL;
 
 
 exports.__esModule = true;
-exports.SYMBOL = undefined;
-exports['default'] = func;
+exports["default"] = func;
+exports.SYMBOL = void 0;
 
 var _number = __webpack_require__(4);
 
 var _error = __webpack_require__(3);
 
-var SYMBOL = exports.SYMBOL = '*';
+var SYMBOL = '*';
+exports.SYMBOL = SYMBOL;
 
 function func(first) {
   for (var _len = arguments.length, rest = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -32594,8 +32600,10 @@ func.SYMBOL = SYMBOL;
 
 
 exports.__esModule = true;
-exports['default'] = func;
-var SYMBOL = exports.SYMBOL = '<>';
+exports["default"] = func;
+exports.SYMBOL = void 0;
+var SYMBOL = '<>';
+exports.SYMBOL = SYMBOL;
 
 function func(exp1, exp2) {
   return exp1 !== exp2;
@@ -32611,14 +32619,15 @@ func.SYMBOL = SYMBOL;
 
 
 exports.__esModule = true;
-exports.SYMBOL = undefined;
-exports['default'] = func;
+exports["default"] = func;
+exports.SYMBOL = void 0;
 
 var _number = __webpack_require__(4);
 
 var _error = __webpack_require__(3);
 
-var SYMBOL = exports.SYMBOL = '^';
+var SYMBOL = '^';
+exports.SYMBOL = SYMBOL;
 
 function func(exp1, exp2) {
   var result = Math.pow((0, _number.toNumber)(exp1), (0, _number.toNumber)(exp2));
@@ -33811,7 +33820,9 @@ var substr = 'ab'.substr(-1) === 'b'
 
 exports.__esModule = true;
 exports.trimEdges = trimEdges;
+
 /* eslint-disable import/prefer-default-export */
+
 /**
  * Trim value by cutting character starting from the beginning and ending at the same time.
  *
@@ -33821,9 +33832,7 @@ exports.trimEdges = trimEdges;
  */
 function trimEdges(string) {
   var margin = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
   string = string.substring(margin, string.length - margin);
-
   return string;
 }
 

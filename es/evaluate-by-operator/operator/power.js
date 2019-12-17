@@ -1,13 +1,23 @@
-import { toNumber } from './../../helper/number';
-import { ERROR_VALUE } from './../../error';
+"use strict";
 
-export var SYMBOL = '^';
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = func;
+exports.SYMBOL = void 0;
 
-export default function func(exp1, exp2) {
-  var result = Math.pow(toNumber(exp1), toNumber(exp2));
+var _number = require("./../../helper/number");
+
+var _error = require("./../../error");
+
+var SYMBOL = '^';
+exports.SYMBOL = SYMBOL;
+
+function func(exp1, exp2) {
+  var result = Math.pow((0, _number.toNumber)(exp1), (0, _number.toNumber)(exp2));
 
   if (isNaN(result)) {
-    return Error(ERROR_VALUE);
+    return Error(_error.ERROR_VALUE);
   }
 
   return result;

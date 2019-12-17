@@ -1,11 +1,19 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.toNumber = toNumber;
+exports.invertNumber = invertNumber;
+
 /**
  * Convert value into number.
  *
  * @param {String|Number} number
  * @returns {*}
  */
-export function toNumber(number) {
-  var result = void 0;
+function toNumber(number) {
+  var result;
 
   if (typeof number === 'number') {
     result = number;
@@ -20,13 +28,20 @@ export function toNumber(number) {
 
   return result;
 }
-
 /**
  * Invert provided number.
  *
  * @param {Number} number
  * @returns {Number} Returns inverted number.
  */
-export function invertNumber(number) {
+
+
+function invertNumber(number) {
+  var num = toNumber(number);
+
+  if (num === 0) {
+    return 0;
+  }
+
   return -1 * toNumber(number);
 }

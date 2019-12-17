@@ -1,11 +1,13 @@
 {
+  "presets": [
+    "@babel/preset-env"
+  ],
   "plugins": [
     ["transform-es2015-template-literals", { "loose": true }],
     "transform-es2015-literals",
     "transform-es2015-function-name",
     "transform-es2015-arrow-functions",
     "transform-es2015-block-scoped-functions",
-    ["transform-es2015-classes", { "loose": true }],
     "transform-es2015-object-super",
     "transform-es2015-shorthand-properties",
     ["transform-es2015-computed-properties", { "loose": true }],
@@ -15,16 +17,17 @@
     "check-es2015-constants",
     ["transform-es2015-spread", { "loose": true }],
     "transform-es2015-parameters",
-    ["transform-es2015-destructuring", { "loose": true }],
-    "transform-es2015-block-scoping",
-    "transform-object-rest-spread",
     "transform-es3-member-expression-literals",
-    "transform-es3-property-literals"
+    "transform-es3-property-literals",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-transform-block-scoping",
+    ["@babel/plugin-transform-classes", { "loose": true }],
+    ["@babel/plugin-transform-destructuring", { "loose": true }]
   ],
   "env": {
     "commonjs": {
       "plugins": [
-        ["transform-es2015-modules-commonjs", { "loose": true }]
+        ["@babel/plugin-transform-modules-commonjs", { "loose": true }]
       ]
     }
   },
